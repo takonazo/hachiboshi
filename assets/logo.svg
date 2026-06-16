@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">八星製薬ロゴ</title>
+  <desc id="desc">八芒星の中心に蜂をあしらった架空企業ロゴ</desc>
+  <defs>
+    <linearGradient id="star" x1="22" y1="18" x2="106" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a76c7"/>
+      <stop offset="1" stop-color="#0a3562"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="#f6fbff"/>
+  <path
+    d="M64 8 75 39 104 24 89 53 120 64 89 75 104 104 75 89 64 120 53 89 24 104 39 75 8 64 39 53 24 24 53 39Z"
+    fill="url(#star)"
+  />
+  <circle cx="64" cy="64" r="34" fill="#fff" opacity=".94"/>
+  <ellipse cx="48" cy="56" rx="13" ry="18" fill="#d9edf8" stroke="#78aeca" stroke-width="3" transform="rotate(-32 48 56)"/>
+  <ellipse cx="80" cy="56" rx="13" ry="18" fill="#d9edf8" stroke="#78aeca" stroke-width="3" transform="rotate(32 80 56)"/>
+  <ellipse cx="64" cy="72" rx="17" ry="25" fill="#12304f"/>
+  <path d="M51 61c8 4 18 4 26 0M49 73c9 5 21 5 30 0M53 85c7 3 15 3 22 0" fill="none" stroke="#f2c94c" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="64" cy="44" r="13" fill="#12304f"/>
+  <circle cx="58" cy="42" r="2.6" fill="#fff"/>
+  <circle cx="70" cy="42" r="2.6" fill="#fff"/>
+  <path d="M58 32 51 22M70 32l7-10" fill="none" stroke="#12304f" stroke-width="4" stroke-linecap="round"/>
+</svg>

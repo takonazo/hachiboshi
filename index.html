@@ -3,56 +3,86 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>瑞葉ファーマ株式会社</title>
+    <title>八星製薬株式会社</title>
     <meta
       name="description"
-      content="瑞葉ファーマ株式会社は、自然由来成分と製剤技術をもとに、健やかな毎日を支える研究開発型企業です。"
+      content="八星製薬株式会社は、研究開発と品質保証を通じて、健やかな日常を支える架空の製薬会社です。"
     >
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#">
-        <span class="brand-mark" aria-hidden="true"></span>
+      <a class="brand" href="index.html#top" aria-label="八星製薬株式会社 トップへ">
+        <img class="brand-logo" src="assets/logo.svg" alt="八星製薬ロゴ">
         <span>
-          <strong>瑞葉ファーマ</strong>
-          <small>Mizuha Pharma</small>
+          <strong>八星製薬株式会社</strong>
+          <small>Hachiboshi Pharmaceutical</small>
         </span>
       </a>
       <nav class="global-nav" aria-label="主要ナビゲーション">
-        <a href="#business">事業内容</a>
-        <a href="#research">研究開発</a>
-        <a href="#quality">品質への取り組み</a>
-        <a href="#news">お知らせ</a>
-        <a class="nav-contact" href="#contact">お問い合わせ</a>
+        <a href="index.html#news">お知らせ</a>
+        <a href="index.html#business">事業内容</a>
+        <a href="index.html#research">研究開発</a>
+        <a href="index.html#company">会社概要</a>
+        <a href="search.html">サイト内検索</a>
       </nav>
+      <form class="header-search" action="search.html" method="get" role="search">
+        <label class="sr-only" for="header-search">サイト内検索</label>
+        <input id="header-search" name="q" type="search" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+      </form>
     </header>
 
-    <main>
+    <main id="top">
       <section class="hero" aria-label="トップ">
-        <img src="assets/hero-lab.png" alt="清潔な研究室で試料を扱う研究員" class="hero-image">
+        <img src="assets/hero-lab-blue.png" alt="清潔な研究室で試料を扱う研究員" class="hero-image">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <p class="eyebrow">Science for Life and Beauty</p>
-          <h1>自然の知恵を、確かな品質へ。</h1>
+          <p class="eyebrow">Hachiboshi Pharmaceutical Co., Ltd.</p>
+          <h1>八つの領域をつなぎ、明日の健やかさへ。</h1>
           <p>
-            瑞葉ファーマは、植物由来成分の研究、機能性素材の開発、
-            そして安定した製造管理で、人々のすこやかな毎日に貢献します。
+            八星製薬は、医薬品原料、機能性素材、品質評価の知見を結び、
+            人と社会の安心に向けた研究開発を続けています。
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#business">事業を見る</a>
-            <a class="button secondary" href="#research">研究開発</a>
+            <a class="button primary" href="#news">最新のお知らせ</a>
+            <a class="button secondary" href="#business">事業内容</a>
           </div>
+        </div>
+      </section>
+
+      <section id="news" class="section-inner news-section">
+        <div class="section-heading inline">
+          <div>
+            <p class="section-label">News</p>
+            <h2>最新ニュース</h2>
+          </div>
+          <a href="search.html" class="text-link">サイト内検索へ</a>
+        </div>
+        <div class="news-list">
+          <a href="new-employees.html">
+            <time datetime="2026-06-17">2026.06.17</time>
+            <span>新入社員紹介特設ページを追加しました。</span>
+          </a>
+          <a href="newsletter.html#contest">
+            <time datetime="2026-06-03">2026.06.03</time>
+            <span>当社の社内報が「社内報コンテスト」で入賞しました。</span>
+          </a>
+          <a href="newsletter.html">
+            <time datetime="2026-05-24">2026.05.24</time>
+            <span>社内報「星だより」第38号を発行しました。</span>
+          </a>
         </div>
       </section>
 
       <section class="message section-band">
         <div class="section-inner narrow">
-          <p class="section-label">Our Mission</p>
-          <h2>原料の一滴から、未来の安心まで。</h2>
+          <p class="section-label">Message</p>
+          <h2>小さな兆しを、確かな製品価値へ。</h2>
           <p>
-            私たちは、研究・調達・製造・品質保証を一貫して見つめ、
-            医薬品、健康食品、化粧品分野に向けた信頼性の高い素材づくりに取り組んでいます。
+            八星製薬は、研究・製造・品質保証の各部門が連携し、
+            ひとつひとつのデータを丁寧に積み重ねることで、
+            信頼できる素材と情報をお届けします。
           </p>
         </div>
       </section>
@@ -65,18 +95,18 @@
         <div class="business-grid">
           <article class="business-card">
             <span class="card-number">01</span>
-            <h3>医薬品原料</h3>
-            <p>厳格な規格管理のもと、有効成分や添加剤の安定供給を支えます。</p>
+            <h3>医薬品原料事業</h3>
+            <p>規格、安定性、供給体制を重視し、研究段階から量産検討までを支援します。</p>
           </article>
           <article class="business-card">
             <span class="card-number">02</span>
-            <h3>機能性素材</h3>
-            <p>植物エキスや発酵由来素材を中心に、価値ある成分設計を行います。</p>
+            <h3>機能性素材開発</h3>
+            <p>植物由来成分と発酵技術を活かし、健康食品・化粧品向け素材を設計します。</p>
           </article>
           <article class="business-card">
             <span class="card-number">03</span>
-            <h3>化粧品原料</h3>
-            <p>肌へのやさしさと実感価値を両立する処方開発をサポートします。</p>
+            <h3>品質評価サービス</h3>
+            <p>分析、試作、ロット管理を通じて、製品化に必要な品質情報を整えます。</p>
           </article>
         </div>
       </section>
@@ -85,76 +115,63 @@
         <div class="section-inner split">
           <div>
             <p class="section-label">Research</p>
-            <h2>エビデンスを積み重ねる研究開発</h2>
+            <h2>研究開発の取り組み</h2>
             <p>
-              成分分析、安定性評価、試作検討を重ね、素材の可能性を実用レベルへ引き上げます。
-              大学・研究機関との共同研究にも取り組み、次世代のヘルスケア素材を探求しています。
+              成分分析、安定性評価、処方検討を一体で行い、素材の特性を正しく把握します。
+              社内外の研究機関と連携しながら、製薬会社としての安全性と再現性を大切にしています。
             </p>
           </div>
           <dl class="research-list">
             <div>
-              <dt>成分分析</dt>
-              <dd>HPLCなどを用いた定量評価</dd>
+              <dt>分析評価</dt>
+              <dd>HPLC、分光分析、微生物試験による基礎データの取得</dd>
             </div>
             <div>
-              <dt>処方開発</dt>
-              <dd>用途に応じた試作と安定性検証</dd>
+              <dt>製剤検討</dt>
+              <dd>用途に応じた試作、溶解性、保存安定性の確認</dd>
             </div>
             <div>
               <dt>共同研究</dt>
-              <dd>外部機関と連携した機能探索</dd>
+              <dd>大学・研究機関との連携による新規素材探索</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      <section id="quality" class="section-inner quality">
-        <div class="quality-panel">
-          <p class="section-label">Quality</p>
-          <h2>安心を支える品質管理</h2>
+      <section id="company" class="section-inner company">
+        <div>
+          <p class="section-label">Company</p>
+          <h2>会社概要</h2>
           <p>
-            原料受入から出荷まで、記録と検査を積み重ねることで品質の再現性を守ります。
-            必要な情報を透明に共有し、長く選ばれるパートナーであり続けます。
+            八星製薬株式会社は、八つの専門領域が有機的に結びつく研究体制を掲げ、
+            医薬品・ヘルスケア分野の基盤技術を磨いています。
           </p>
         </div>
-        <div class="quality-stats" aria-label="品質管理の特徴">
-          <div><strong>100%</strong><span>ロット管理</span></div>
-          <div><strong>24h</strong><span>安定性モニタリング</span></div>
-          <div><strong>3</strong><span>研究・製造・保証の連携</span></div>
-        </div>
-      </section>
-
-      <section id="news" class="news section-band">
-        <div class="section-inner">
-          <div class="section-heading inline">
-            <div>
-              <p class="section-label">News</p>
-              <h2>お知らせ</h2>
-            </div>
-            <a href="#" class="text-link">一覧を見る</a>
+        <dl class="company-table">
+          <div>
+            <dt>社名</dt>
+            <dd>八星製薬株式会社</dd>
           </div>
-          <div class="news-list">
-            <a href="#">
-              <time datetime="2026-06-16">2026.06.16</time>
-              <span>ウェブサイトを公開しました。</span>
-            </a>
-            <a href="#">
-              <time datetime="2026-05-28">2026.05.28</time>
-              <span>植物由来素材の新規評価を開始しました。</span>
-            </a>
-            <a href="#">
-              <time datetime="2026-04-10">2026.04.10</time>
-              <span>品質保証体制に関する取り組みを更新しました。</span>
-            </a>
+          <div>
+            <dt>設立</dt>
+            <dd>2008年8月</dd>
           </div>
-        </div>
+          <div>
+            <dt>所在地</dt>
+            <dd>東京都千代田区星見町8-8-8</dd>
+          </div>
+          <div>
+            <dt>事業内容</dt>
+            <dd>医薬品原料、機能性素材、品質評価サービス</dd>
+          </div>
+        </dl>
       </section>
     </main>
 
-    <footer id="contact" class="site-footer">
+    <footer class="site-footer">
       <div>
-        <strong>瑞葉ファーマ株式会社</strong>
-        <p>〒100-0000 東京都千代田区瑞葉町1-1-1</p>
+        <strong>八星製薬株式会社</strong>
+        <p>〒100-0000 東京都千代田区星見町8-8-8</p>
       </div>
       <a class="footer-contact" href="mailto:info@example.com">info@example.com</a>
     </footer>

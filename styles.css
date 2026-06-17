@@ -375,7 +375,8 @@ h3 {
   border-radius: 6px;
 }
 
-.news-list a {
+.news-list > a,
+.news-list > .news-item {
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 24px;
@@ -383,7 +384,7 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
-.news-list a:last-child {
+.news-list > :last-child {
   border-bottom: 0;
 }
 
@@ -695,7 +696,8 @@ h3 {
   .company-table div,
   .archive-table div,
   .profile-card dl div,
-  .news-list a,
+  .news-list > a,
+  .news-list > .news-item,
   .large-search div {
     grid-template-columns: 1fr;
     gap: 6px;

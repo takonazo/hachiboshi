@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>社員専用ポータル | 八星製薬株式会社</title>
+    <meta name="description" content="八星製薬株式会社の社員専用ポータルです。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="portal-body">
+    <main class="portal-shell">
+      <section class="portal-login" data-login-panel>
+        <div class="portal-login-copy">
+          <img class="portal-logo" src="assets/logo.svg" alt="八星製薬ロゴ">
+          <p class="portal-kicker">HACHIBOSHI STAFF PORTAL</p>
+          <h1>社員専用ポータル</h1>
+          <p>
+            社内連絡、広報素材、部署別タスクを確認できます。
+            利用後は必ずログアウトしてください。
+          </p>
+        </div>
+
+        <form class="portal-card" data-login-form>
+          <div>
+            <p class="portal-card-label">Secure Login</p>
+            <h2>認証情報を入力</h2>
+          </div>
+          <label>
+            <span>ID</span>
+            <input name="staffId" type="text" autocomplete="username" placeholder="社員ID">
+          </label>
+          <label>
+            <span>パスワード</span>
+            <input name="password" type="password" autocomplete="current-password" placeholder="Password">
+          </label>
+          <p class="portal-error" data-login-error hidden>認証に失敗しました。IDまたはパスワードを確認してください。</p>
+          <button type="submit">ログイン</button>
+        </form>
+      </section>
+
+      <section class="portal-dashboard" data-dashboard hidden>
+        <aside class="portal-sidebar">
+          <img class="portal-logo" src="assets/logo.svg" alt="八星製薬ロゴ">
+          <p class="portal-kicker">Authenticated</p>
+          <h1>星野 透</h1>
+          <p>コーポレートコミュニケーション室</p>
+          <dl>
+            <div><dt>社員ID</dt><dd>HBP-CC-026</dd></div>
+            <div><dt>権限</dt><dd>広報素材 / 社内報編集</dd></div>
+            <div><dt>最終ログイン</dt><dd>2026.06.17 08:42</dd></div>
+          </dl>
+          <button class="portal-logout" type="button" data-logout>ログアウト</button>
+        </aside>
+
+        <div class="portal-main">
+          <header class="portal-main-header">
+            <div>
+              <p class="portal-kicker">My Page</p>
+              <h2>社員マイページ</h2>
+            </div>
+            <div class="portal-status">社内ネットワーク: 制限閲覧</div>
+          </header>
+
+          <div class="portal-metrics">
+            <div><strong>4</strong><span>未読のお知らせ</span></div>
+            <div><strong>2</strong><span>確認待ち素材</span></div>
+            <div><strong>08</strong><span>標章関連コード</span></div>
+          </div>
+
+          <section class="portal-board">
+            <div class="portal-board-header">
+              <h3>会社からのお知らせ</h3>
+              <span>Internal Notice</span>
+            </div>
+            <article>
+              <time datetime="2026-06-17">2026.06.17</time>
+              <div>
+                <h4>社内報 第38号PNG差し替え予定</h4>
+                <p>広報確認後、公開ページのお知らせ欄から閲覧できるようにする予定です。</p>
+              </div>
+            </article>
+            <article>
+              <time datetime="2026-06-14">2026.06.14</time>
+              <div>
+                <h4>標章確認メモの更新</h4>
+                <p>八芒星と蜂の配置に関する説明文を最新版へ更新しました。</p>
+              </div>
+            </article>
+            <article>
+              <time datetime="2026-06-10">2026.06.10</time>
+              <div>
+                <h4>新入社員紹介ページの文面確認</h4>
+                <p>コーポレートコミュニケーション室担当分のプロフィール文を確認してください。</p>
+              </div>
+            </article>
+            <article>
+              <time datetime="2026-06-03">2026.06.03</time>
+              <div>
+                <h4>社内報コンテスト2026 入賞連絡</h4>
+                <p>外部向け告知では受賞部門名を省略し、社名と媒体名のみ掲載します。</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="portal-grid">
+            <div class="portal-note">
+              <h3>今日のタスク</h3>
+              <ul>
+                <li>社員紹介ページのリンク表記確認</li>
+                <li>Xアカウント告知文の誤字確認</li>
+                <li>社内報画像の受領待ち</li>
+              </ul>
+            </div>
+            <div class="portal-note warning">
+              <h3>研究広報室メモ</h3>
+              <p>
+                第八保管庫の資料名は公開検索に登録しないこと。
+                必要な社員には個別にURLを共有する。
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="staff-portal.js"></script>
+  </body>
+</html>

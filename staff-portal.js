@@ -15,6 +15,7 @@
     "hachiboshiNotificationsReadV2",
     "hachiboshiNotificationsReadV3"
   ];
+  let hallucinationFrame = null;
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -150,48 +151,61 @@
     const rotation = randomBetween(-8, 8);
     const travel = randomBetween(64, 96);
     const rise = -Math.round(travel * randomBetween(42, 58) / 100);
-    const arc = randomBetween(14, 24);
-    const arcDirection = randomBetween(0, 1) === 0 ? -1 : 1;
-    const arcOffset = arc * arcDirection;
-    const quarterX = Math.round(travel * 0.25);
-    const quarterY = Math.round(rise * 0.25) + Math.round(arcOffset * 0.72);
-    const midX = Math.round(travel * 0.52);
-    const midY = Math.round(rise * 0.52) + arcOffset;
-    const threeQuarterX = Math.round(travel * 0.76);
-    const threeQuarterY = Math.round(rise * 0.76) + Math.round(arcOffset * 0.72);
-    const finalTransform = `translate(${travel}px, ${rise}px) rotate(${rotation}deg) scale(0.98)`;
+    const arc = randomBetween(14, 22) * (randomBetween(0, 1) === 0 ? -1 : 1);
+    const duration = randomBetween(2100, 2500);
+    const startTime = performance.now();
+    const finalTransform = makeBeeTransform(travel, rise, rotation, 0.98);
 
     hallucinationInsect.classList.remove("is-visible");
     hallucinationInsect.classList.remove("is-fading");
-    void hallucinationInsect.offsetWidth;
+    if (hallucinationFrame) {
+      cancelAnimationFrame(hallucinationFrame);
+    }
     hallucinationInsect.style.width = `${size}px`;
     hallucinationInsect.style.left = `${x}vw`;
     hallucinationInsect.style.top = `${y}vh`;
-    hallucinationInsect.style.setProperty("--bee-rotation", `${rotation}deg`);
-    hallucinationInsect.style.setProperty("--bee-travel-x", `${travel}px`);
-    hallucinationInsect.style.setProperty("--bee-travel-y", `${rise}px`);
-    hallucinationInsect.style.setProperty("--bee-quarter-x", `${quarterX}px`);
-    hallucinationInsect.style.setProperty("--bee-quarter-y", `${quarterY}px`);
-    hallucinationInsect.style.setProperty("--bee-mid-x", `${midX}px`);
-    hallucinationInsect.style.setProperty("--bee-mid-y", `${midY}px`);
-    hallucinationInsect.style.setProperty("--bee-three-quarter-x", `${threeQuarterX}px`);
-    hallucinationInsect.style.setProperty("--bee-three-quarter-y", `${threeQuarterY}px`);
-    hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.94)`;
+    hallucinationInsect.style.transform = makeBeeTransform(0, 0, rotation, 0.94);
     hallucinationInsect.hidden = false;
     hallucinationInsect.classList.add("is-visible");
 
-    window.setTimeout(function () {
+    function renderFrame(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutSine(progress);
+      const wave = Math.sin(Math.PI * eased) * arc;
+      const xOffset = travel * eased;
+      const yOffset = rise * eased + wave;
+      const scale = 0.94 + Math.sin(Math.PI * eased) * 0.06 + eased * 0.04;
+
+      hallucinationInsect.style.transform = makeBeeTransform(xOffset, yOffset, rotation, scale);
+
+      if (progress < 1) {
+        hallucinationFrame = requestAnimationFrame(renderFrame);
+        return;
+      }
+
       hallucinationInsect.style.transform = finalTransform;
       hallucinationInsect.classList.remove("is-visible");
       hallucinationInsect.classList.add("is-fading");
       window.setTimeout(function () {
         hallucinationInsect.classList.remove("is-fading");
         hallucinationInsect.hidden = true;
-      }, 320);
-    }, randomBetween(2150, 2450));
+        hallucinationFrame = null;
+      }, 360);
+    }
+
+    hallucinationFrame = requestAnimationFrame(renderFrame);
   }
 
   function randomBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function easeInOutSine(progress) {
+    return -(Math.cos(Math.PI * progress) - 1) / 2;
+  }
+
+  function makeBeeTransform(x, y, rotation, scale) {
+    return `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rotation}deg) scale(${scale.toFixed(3)})`;
   }
 })();

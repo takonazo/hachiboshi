@@ -21,6 +21,7 @@
   const messageOpenButtons = document.querySelectorAll("[data-open-message]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
   const portalAudio = document.querySelector("[data-portal-audio]");
+  const portalAudioToggle = document.querySelector("[data-audio-toggle]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
@@ -31,6 +32,7 @@
   let hallucinationTimeout = null;
   let portalAudioStarted = false;
   let portalAudioFadeFrame = null;
+  const portalAudioTargetVolume = 0.28;
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -148,11 +150,23 @@
 
     portalAudio.loop = true;
     portalAudio.volume = 0;
+    portalAudio.muted = readPortalAudioMuted();
+    updatePortalAudioToggle();
     startPortalAudio();
 
     ["pointerdown", "keydown", "touchstart", "click"].forEach(function (eventName) {
       document.addEventListener(eventName, startPortalAudio, { once: true, passive: true });
     });
+
+    if (portalAudioToggle) {
+      portalAudioToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        setPortalAudioMuted(!portalAudio.muted);
+        if (!portalAudio.muted) {
+          startPortalAudio();
+        }
+      });
+    }
   }
 
   function startPortalAudio() {
@@ -179,7 +193,6 @@
     }
 
     portalAudioStarted = true;
-    const targetVolume = 0.28;
     const duration = 4200;
     const startTime = performance.now();
 
@@ -189,18 +202,55 @@
 
     function render(now) {
       const progress = Math.min((now - startTime) / duration, 1);
-      portalAudio.volume = targetVolume * progress;
+      portalAudio.volume = portalAudioTargetVolume * progress;
 
       if (progress < 1) {
         portalAudioFadeFrame = requestAnimationFrame(render);
         return;
       }
 
-      portalAudio.volume = targetVolume;
+      portalAudio.volume = portalAudioTargetVolume;
       portalAudioFadeFrame = null;
     }
 
     portalAudioFadeFrame = requestAnimationFrame(render);
+  }
+
+  function setPortalAudioMuted(muted) {
+    if (!portalAudio) {
+      return;
+    }
+
+    portalAudio.muted = muted;
+    savePortalAudioMuted(muted);
+    updatePortalAudioToggle();
+  }
+
+  function updatePortalAudioToggle() {
+    if (!portalAudioToggle || !portalAudio) {
+      return;
+    }
+
+    const muted = portalAudio.muted;
+    portalAudioToggle.classList.toggle("is-muted", muted);
+    portalAudioToggle.setAttribute("aria-label", muted ? "BGMのミュートを解除" : "BGMをミュート");
+    portalAudioToggle.setAttribute("title", muted ? "BGMのミュートを解除" : "BGMをミュート");
+  }
+
+  function readPortalAudioMuted() {
+    try {
+      return localStorage.getItem("hachiboshiPortalAudioMuted") === "true";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function savePortalAudioMuted(muted) {
+    try {
+      localStorage.setItem("hachiboshiPortalAudioMuted", String(muted));
+    } catch (error) {
+      return;
+    }
   }
 
   function clearNotificationDot() {

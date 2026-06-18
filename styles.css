@@ -1404,6 +1404,64 @@ h3 {
   outline: 0;
 }
 
+.portal-audio-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #f6fbff;
+  background: rgba(18, 43, 60, 0.92);
+  border: 1px solid rgba(127, 185, 221, 0.36);
+  border-radius: 50%;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.34);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.portal-audio-toggle:hover,
+.portal-audio-toggle:focus-visible {
+  background: rgba(24, 55, 75, 0.98);
+  outline: 2px solid rgba(127, 185, 221, 0.54);
+  outline-offset: 3px;
+}
+
+.audio-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.audio-icon path {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.audio-icon path:first-child {
+  stroke: none;
+}
+
+.audio-icon-off {
+  display: none;
+}
+
+.portal-audio-toggle.is-muted {
+  color: #ffd18a;
+}
+
+.portal-audio-toggle.is-muted .audio-icon-on {
+  display: none;
+}
+
+.portal-audio-toggle.is-muted .audio-icon-off {
+  display: block;
+}
+
 .hallucination-insect {
   position: fixed;
   z-index: 35;

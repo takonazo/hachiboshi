@@ -6,6 +6,9 @@
   const form = document.querySelector("[data-login-form]");
   const error = document.querySelector("[data-login-error]");
   const logout = document.querySelector("[data-logout]");
+  const notificationButton = document.querySelector("[data-notification-button]");
+  const notificationPanel = document.querySelector("[data-notification-panel]");
+  const notificationDot = document.querySelector("[data-notification-dot]");
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -40,12 +43,50 @@
       loginPanel.hidden = false;
       form.reset();
       error.hidden = true;
+      hideNotifications();
+    });
+  }
+
+  if (notificationButton && notificationPanel) {
+    if (localStorage.getItem("hachiboshiNotificationsRead") === "true") {
+      clearNotificationDot();
+    }
+
+    notificationButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const opening = notificationPanel.hidden;
+      notificationPanel.hidden = !opening;
+      notificationButton.setAttribute("aria-expanded", String(opening));
+      if (opening) {
+        localStorage.setItem("hachiboshiNotificationsRead", "true");
+        clearNotificationDot();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!notificationPanel.hidden && !event.target.closest("[data-notification]")) {
+        hideNotifications();
+      }
     });
   }
 
   function showDashboard() {
     loginPanel.hidden = true;
     dashboard.hidden = false;
+  }
+
+  function hideNotifications() {
+    if (notificationPanel && notificationButton) {
+      notificationPanel.hidden = true;
+      notificationButton.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function clearNotificationDot() {
+    if (notificationDot && notificationButton) {
+      notificationDot.hidden = true;
+      notificationButton.classList.remove("has-unread");
+    }
   }
 
   function normalize(value) {

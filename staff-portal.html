@@ -34,6 +34,10 @@
             <span>パスワード</span>
             <input name="password" type="password" autocomplete="current-password" placeholder="Password">
           </label>
+          <details class="portal-help">
+            <summary>パスワードを忘れた方はこちら</summary>
+            <p>案内文を準備中です。</p>
+          </details>
           <p class="portal-error" data-login-error hidden>認証に失敗しました。IDまたはパスワードを確認してください。</p>
           <button type="submit">ログイン</button>
         </form>
@@ -58,6 +62,41 @@
             <div>
               <p class="portal-kicker">My Page</p>
               <h2>社員マイページ</h2>
+            </div>
+            <div class="portal-notification" data-notification>
+              <button class="portal-bell has-unread" type="button" data-notification-button aria-label="通知" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 16v-5a6 6 0 0 0-12 0v5l-2 2h16l-2-2Z"></path>
+                  <path d="M10 20a2 2 0 0 0 4 0"></path>
+                </svg>
+                <span class="notification-dot" data-notification-dot></span>
+              </button>
+              <div class="notification-panel" data-notification-panel hidden>
+                <div class="notification-panel-header">
+                  <h3>通知</h3>
+                  <span>5件</span>
+                </div>
+                <a href="#">
+                  <strong>北村部長</strong>
+                  <span>PJ:Meteorの件、今日中に確認を・・・</span>
+                </a>
+                <a href="#">
+                  <strong>同期〜ズ</strong>
+                  <span>今月の暗号ってさ、上によろしく・・・</span>
+                </a>
+                <a href="#">
+                  <strong>会議室予約</strong>
+                  <span>15:00から品質保証室との定例・・・</span>
+                </a>
+                <a href="#">
+                  <strong>星だより編集</strong>
+                  <span>6月号PNGデータが共有されました・・・</span>
+                </a>
+                <a href="#">
+                  <strong>カレンダー</strong>
+                  <span>緊急時マニュアル確認会が追加・・・</span>
+                </a>
+              </div>
             </div>
           </header>
 

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>社内報「星だより」6月号 | 八星製薬株式会社</title>
+    <meta name="description" content="八星製薬株式会社の社内報閲覧ページです。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="八星製薬株式会社 トップへ">
+        <img class="brand-logo" src="assets/logo.svg" alt="八星製薬ロゴ">
+        <span>
+          <strong>八星製薬株式会社</strong>
+          <small>Hachiboshi Pharmaceutical</small>
+        </span>
+      </a>
+      <nav class="global-nav" aria-label="主要ナビゲーション">
+        <a href="index.html#news">お知らせ</a>
+        <a href="index.html#business">事業内容</a>
+        <a href="index.html#research">研究開発</a>
+        <a href="index.html#company">会社概要</a>
+        <a href="search.html">サイト内検索</a>
+      </nav>
+      <form class="header-search" action="search.html" method="get" role="search">
+        <label class="sr-only" for="newsletter-search">サイト内検索</label>
+        <input id="newsletter-search" name="q" type="search" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+      </form>
+    </header>
+
+    <main>
+      <section class="page-hero newsletter-hero">
+        <div class="section-inner">
+          <p class="section-label">Internal Magazine</p>
+          <h1>社内報「星だより」6月号</h1>
+          <p>閲覧するには、正しい4色を正しい順番で選択してください。</p>
+        </div>
+      </section>
+
+      <section class="section-inner color-lock-section">
+        <div class="color-lock-card">
+          <div class="color-lock-header">
+            <p class="section-label">Color Verification</p>
+            <h2>閲覧コード入力</h2>
+            <p>各マスの上下ボタンで色を切り替え、左から順に4色を指定してください。</p>
+          </div>
+
+          <div class="color-lock" data-color-lock aria-label="4色選択">
+            <div class="color-slot" data-slot>
+              <button type="button" data-step="prev" aria-label="前の候補">▲</button>
+              <div class="color-square" data-square></div>
+              <button type="button" data-step="next" aria-label="次の候補">▼</button>
+            </div>
+            <div class="color-slot" data-slot>
+              <button type="button" data-step="prev" aria-label="前の候補">▲</button>
+              <div class="color-square" data-square></div>
+              <button type="button" data-step="next" aria-label="次の候補">▼</button>
+            </div>
+            <div class="color-slot" data-slot>
+              <button type="button" data-step="prev" aria-label="前の候補">▲</button>
+              <div class="color-square" data-square></div>
+              <button type="button" data-step="next" aria-label="次の候補">▼</button>
+            </div>
+            <div class="color-slot" data-slot>
+              <button type="button" data-step="prev" aria-label="前の候補">▲</button>
+              <div class="color-square" data-square></div>
+              <button type="button" data-step="next" aria-label="次の候補">▼</button>
+            </div>
+          </div>
+
+          <div class="color-lock-actions">
+            <button class="button primary" type="button" data-check-colors>確認</button>
+            <p class="color-lock-message" data-color-message aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="newsletter-preview" data-newsletter-content hidden>
+          <p class="section-label">Unlocked</p>
+          <h2>星だより 6月号</h2>
+          <p>
+            認証が完了しました。社内報画像は準備中です。
+            PNGファイルの掲載後、この領域に差し替えます。
+          </p>
+          <div class="newsletter-placeholder">HOSHIDAYORI / JUNE ISSUE</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>八星製薬株式会社</strong>
+        <p>〒100-0000 東京都千代田区星見町8-8-8</p>
+      </div>
+      <a class="footer-contact" href="mailto:info@example.com">info@example.com</a>
+    </footer>
+    <script src="newsletter-june.js"></script>
+  </body>
+</html>

@@ -20,6 +20,7 @@
   const messageModal = document.querySelector("[data-message-modal]");
   const messageOpenButtons = document.querySelectorAll("[data-open-message]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
+  const portalAudio = document.querySelector("[data-portal-audio]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
@@ -28,6 +29,8 @@
   ];
   let hallucinationFrame = null;
   let hallucinationTimeout = null;
+  let portalAudioStarted = false;
+  let portalAudioFadeFrame = null;
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -36,6 +39,8 @@
   if (sessionStorage.getItem("hachiboshiPortal") === "hoshino") {
     showDashboard();
   }
+
+  initPortalAudio();
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -134,6 +139,68 @@
     if (messageModal) {
       messageModal.hidden = true;
     }
+  }
+
+  function initPortalAudio() {
+    if (!portalAudio) {
+      return;
+    }
+
+    portalAudio.loop = true;
+    portalAudio.volume = 0;
+    startPortalAudio();
+
+    ["pointerdown", "keydown", "touchstart", "click"].forEach(function (eventName) {
+      document.addEventListener(eventName, startPortalAudio, { once: true, passive: true });
+    });
+  }
+
+  function startPortalAudio() {
+    if (!portalAudio || portalAudioStarted) {
+      return;
+    }
+
+    portalAudio.volume = 0;
+    const playAttempt = portalAudio.play();
+
+    if (playAttempt && typeof playAttempt.then === "function") {
+      playAttempt.then(beginPortalAudioFade).catch(function () {
+        portalAudioStarted = false;
+      });
+      return;
+    }
+
+    beginPortalAudioFade();
+  }
+
+  function beginPortalAudioFade() {
+    if (!portalAudio || portalAudioStarted) {
+      return;
+    }
+
+    portalAudioStarted = true;
+    const targetVolume = 0.28;
+    const duration = 4200;
+    const startTime = performance.now();
+
+    if (portalAudioFadeFrame) {
+      cancelAnimationFrame(portalAudioFadeFrame);
+    }
+
+    function render(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      portalAudio.volume = targetVolume * progress;
+
+      if (progress < 1) {
+        portalAudioFadeFrame = requestAnimationFrame(render);
+        return;
+      }
+
+      portalAudio.volume = targetVolume;
+      portalAudioFadeFrame = null;
+    }
+
+    portalAudioFadeFrame = requestAnimationFrame(render);
   }
 
   function clearNotificationDot() {

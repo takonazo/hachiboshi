@@ -718,6 +718,87 @@ h3 {
   font-weight: 900;
 }
 
+.meteor-hero {
+  background:
+    linear-gradient(90deg, rgba(18, 27, 36, 0.96), rgba(20, 66, 80, 0.86)),
+    radial-gradient(circle at 86% 24%, rgba(75, 146, 124, 0.32), transparent 32%);
+}
+
+.meteor-hero h1,
+.meteor-hero p,
+.meteor-hero .section-label {
+  color: #fff;
+}
+
+.meteor-panel {
+  max-width: 980px;
+}
+
+.meteor-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.meteor-meta span {
+  padding: 7px 11px;
+  color: #d9edf0;
+  background: #152934;
+  border: 1px solid #294956;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.meteor-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.meteor-image-frame {
+  margin: 0;
+}
+
+.meteor-image-frame img,
+.meteor-image-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(135deg, rgba(10, 53, 98, 0.08), rgba(75, 146, 124, 0.1)),
+    #f7fbfc;
+  border: 1px dashed #92afbc;
+  border-radius: 6px;
+}
+
+.meteor-image-frame img {
+  object-fit: cover;
+  border-style: solid;
+}
+
+.meteor-image-placeholder span {
+  display: block;
+  color: var(--blue-dark);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.meteor-image-placeholder small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meteor-image-frame figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .site-footer {
   display: flex;
   align-items: center;
@@ -1291,5 +1372,9 @@ h3 {
   .portal-board-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .meteor-image-grid {
+    grid-template-columns: 1fr;
   }
 }

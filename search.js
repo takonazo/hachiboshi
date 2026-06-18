@@ -20,6 +20,12 @@
       url: "new-employees.html",
       excerpt: "2026年度の新入社員3名の紹介を掲載しています。",
       terms: ["新入社員", "社員紹介", "藍沢", "峰岸", "星野", "検索語"]
+    },
+    {
+      title: "Project:Meteor 関連資料",
+      url: "meteor.html",
+      excerpt: "Project:Meteorに関する社内確認用資料を掲載しています。",
+      terms: ["Meteor", "meteor", "ミーティア", "Project:Meteor", "プロジェクトミーティア"]
     }
   ];
 

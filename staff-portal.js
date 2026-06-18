@@ -9,6 +9,7 @@
   const notificationButton = document.querySelector("[data-notification-button]");
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
+  const notificationStorageKey = "hachiboshiNotificationsReadV2";
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -48,7 +49,7 @@
   }
 
   if (notificationButton && notificationPanel) {
-    if (localStorage.getItem("hachiboshiNotificationsRead") === "true") {
+    if (readNotificationState() === "true") {
       clearNotificationDot();
     }
 
@@ -58,7 +59,7 @@
       notificationPanel.hidden = !opening;
       notificationButton.setAttribute("aria-expanded", String(opening));
       if (opening) {
-        localStorage.setItem("hachiboshiNotificationsRead", "true");
+        saveNotificationState();
         clearNotificationDot();
       }
     });
@@ -86,6 +87,22 @@
     if (notificationDot && notificationButton) {
       notificationDot.hidden = true;
       notificationButton.classList.remove("has-unread");
+    }
+  }
+
+  function readNotificationState() {
+    try {
+      return localStorage.getItem(notificationStorageKey);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveNotificationState() {
+    try {
+      localStorage.setItem(notificationStorageKey, "true");
+    } catch (error) {
+      return;
     }
   }
 

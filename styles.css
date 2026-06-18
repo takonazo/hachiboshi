@@ -948,23 +948,27 @@ h3 {
   position: relative;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  color: #d8e6ef;
-  background: rgba(12, 27, 38, 0.92);
-  border: 1px solid rgba(127, 185, 221, 0.24);
+  width: 48px;
+  height: 48px;
+  color: #f6fbff;
+  background: #122b3c;
+  border: 1px solid rgba(127, 185, 221, 0.36);
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.26);
 }
 
-.portal-bell svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
+.portal-bell:hover,
+.portal-bell:focus-visible {
+  background: #18374b;
+  outline: 2px solid rgba(127, 185, 221, 0.54);
+  outline-offset: 3px;
+}
+
+.bell-pictogram {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 .notification-dot {

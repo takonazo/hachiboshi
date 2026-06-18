@@ -1144,9 +1144,10 @@ h3 {
   filter: saturate(1.08) contrast(1.1) drop-shadow(0 7px 10px rgba(0, 0, 0, 0.32));
   mix-blend-mode: normal;
   --bee-rotation: 0deg;
-  --bee-travel-x: 110px;
-  --bee-travel-y: 0px;
-  --bee-curve-y: 24px;
+  --bee-travel-x: 84px;
+  --bee-travel-y: -42px;
+  --bee-mid-x: 44px;
+  --bee-mid-y: -14px;
   transform: rotate(var(--bee-rotation)) scale(0.94);
   transition: opacity 180ms ease;
 }
@@ -1162,7 +1163,7 @@ h3 {
   }
 
   45% {
-    transform: translate(calc(var(--bee-travel-x) * 0.52), var(--bee-curve-y)) rotate(var(--bee-rotation)) scale(1);
+    transform: translate(var(--bee-mid-x), var(--bee-mid-y)) rotate(var(--bee-rotation)) scale(1);
   }
 
   100% {

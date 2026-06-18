@@ -128,7 +128,7 @@
     }
 
     hallucinationInsect.dataset.started = "true";
-    scheduleHallucination(randomBetween(14000, 28000));
+    scheduleHallucination(randomBetween(4000, 9000));
   }
 
   function scheduleHallucination(delay) {
@@ -145,13 +145,14 @@
 
   function showHallucination() {
     const size = randomBetween(70, 105);
-    const x = randomBetween(8, 82);
-    const y = randomBetween(10, 76);
-    const rotation = randomBetween(-28, 28);
-    const direction = randomBetween(0, 1) === 0 ? -1 : 1;
-    const travel = randomBetween(72, 130) * direction;
-    const drift = randomBetween(-34, 34);
-    const curve = randomBetween(-26, 26);
+    const x = randomBetween(6, 78);
+    const y = randomBetween(18, 82);
+    const rotation = randomBetween(-8, 8);
+    const travel = randomBetween(64, 96);
+    const rise = -Math.round(travel * randomBetween(42, 58) / 100);
+    const curve = randomBetween(-10, 10);
+    const midX = Math.round(travel * 0.52);
+    const midY = Math.round(rise * 0.52) + curve;
 
     hallucinationInsect.classList.remove("is-visible");
     void hallucinationInsect.offsetWidth;
@@ -160,8 +161,9 @@
     hallucinationInsect.style.top = `${y}vh`;
     hallucinationInsect.style.setProperty("--bee-rotation", `${rotation}deg`);
     hallucinationInsect.style.setProperty("--bee-travel-x", `${travel}px`);
-    hallucinationInsect.style.setProperty("--bee-travel-y", `${drift}px`);
-    hallucinationInsect.style.setProperty("--bee-curve-y", `${curve}px`);
+    hallucinationInsect.style.setProperty("--bee-travel-y", `${rise}px`);
+    hallucinationInsect.style.setProperty("--bee-mid-x", `${midX}px`);
+    hallucinationInsect.style.setProperty("--bee-mid-y", `${midY}px`);
     hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.94)`;
     hallucinationInsect.hidden = false;
     hallucinationInsect.classList.add("is-visible");

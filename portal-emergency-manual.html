@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>PJ:Meteor従業員向け緊急時マニュアル | 八星製薬株式会社</title>
+    <meta name="description" content="PJ:Meteor従業員向け緊急時マニュアルの認証ページです。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="portal-body">
+    <main class="portal-document-shell">
+      <a class="portal-back" href="staff-portal.html">社員ポータルへ戻る</a>
+
+      <section class="portal-lock-layout" data-password-gate data-password="名もなき毒" data-session-key="hachiboshiManualUnlocked">
+        <form class="portal-card portal-lock-card" data-password-form>
+          <div>
+            <p class="portal-card-label">Restricted Manual</p>
+            <h1>PJ:Meteor従業員向け緊急時マニュアル</h1>
+          </div>
+          <p class="portal-lock-question">新たに発見された物質の正式名称は？</p>
+          <label>
+            <span>回答</span>
+            <input data-password-input type="password" autocomplete="off" placeholder="回答を入力">
+          </label>
+          <p class="portal-error" data-password-error hidden>回答が一致しません。入力内容を確認してください。</p>
+          <button type="submit">閲覧する</button>
+        </form>
+
+        <article class="portal-secure-document" data-locked-content hidden>
+          <p class="portal-card-label">Emergency Manual</p>
+          <h1>PJ:Meteor従業員向け緊急時マニュアル</h1>
+          <p>
+            本資料は、Project:Meteorに関連する緊急時の一次対応を整理した社内向けマニュアルです。
+            詳細版は品質保証室の承認後に共有されます。
+          </p>
+          <div class="secure-document-list">
+            <section>
+              <h2>初動対応</h2>
+              <p>異常を確認した場合は、周囲への共有を最小限にとどめ、所属長および品質保証室へ速やかに報告してください。</p>
+            </section>
+            <section>
+              <h2>記録</h2>
+              <p>発生時刻、確認者、場所、目視情報を記録し、推測を含む表現は避けてください。</p>
+            </section>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="portal-lock.js"></script>
+  </body>
+</html>

@@ -1,6 +1,14 @@
 (function () {
-  const validIds = ["hoshino.toru", "hoshino", "星野透"];
-  const validPassword = "orion-08";
+  const validCredentials = [
+    {
+      ids: ["hoshino.toru", "hoshino", "星野透"],
+      password: "orion-08"
+    },
+    {
+      ids: ["HBP-CC-026"],
+      password: "636123"
+    }
+  ];
   const loginPanel = document.querySelector("[data-login-panel]");
   const dashboard = document.querySelector("[data-dashboard]");
   const form = document.querySelector("[data-login-form]");
@@ -31,11 +39,14 @@
     const data = new FormData(form);
     const staffId = normalize(data.get("staffId") || "");
     const password = normalize(data.get("password") || "");
-    const idMatched = validIds.some(function (id) {
-      return normalize(id) === staffId;
+    const credentialMatched = validCredentials.some(function (credential) {
+      const idMatched = credential.ids.some(function (id) {
+        return normalize(id) === staffId;
+      });
+      return idMatched && normalize(credential.password) === password;
     });
 
-    if (idMatched && password === validPassword) {
+    if (credentialMatched) {
       sessionStorage.setItem("hachiboshiPortal", "hoshino");
       showDashboard();
       return;

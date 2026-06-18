@@ -13,7 +13,14 @@
   const checkButton = document.querySelector("[data-check-colors]");
   const message = document.querySelector("[data-color-message]");
   const content = document.querySelector("[data-newsletter-content]");
+  const gate = document.querySelector("[data-color-gate]");
+  const storageKey = "hachiboshiNewsletterJuneUnlocked";
   const indexes = [0, 0, 0, 0];
+
+  if (readUnlockedState() === "true") {
+    unlock(false);
+    return;
+  }
 
   slots.forEach(function (slot, slotIndex) {
     const square = slot.querySelector("[data-square]");
@@ -38,12 +45,8 @@
       });
 
       if (matched) {
-        message.textContent = "認証が完了しました。";
-        message.classList.add("success");
-        if (content) {
-          content.hidden = false;
-          content.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        saveUnlockedState();
+        unlock(true);
         return;
       }
 
@@ -60,5 +63,37 @@
 
   function wrap(index) {
     return (index + palette.length) % palette.length;
+  }
+
+  function unlock(shouldScroll) {
+    if (message) {
+      message.textContent = "認証が完了しました。";
+      message.classList.add("success");
+    }
+    if (gate) {
+      gate.hidden = true;
+    }
+    if (content) {
+      content.hidden = false;
+      if (shouldScroll) {
+        content.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
+  function readUnlockedState() {
+    try {
+      return localStorage.getItem(storageKey);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveUnlockedState() {
+    try {
+      localStorage.setItem(storageKey, "true");
+    } catch (error) {
+      return;
+    }
   }
 })();

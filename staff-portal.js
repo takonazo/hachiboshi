@@ -9,7 +9,11 @@
   const notificationButton = document.querySelector("[data-notification-button]");
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
-  const notificationStorageKey = "hachiboshiNotificationsReadV2";
+  const notificationStorageKeys = [
+    "hachiboshiNotificationsRead",
+    "hachiboshiNotificationsReadV2",
+    "hachiboshiNotificationsReadV3"
+  ];
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -87,12 +91,16 @@
     if (notificationDot && notificationButton) {
       notificationDot.hidden = true;
       notificationButton.classList.remove("has-unread");
+      notificationButton.dataset.read = "true";
     }
   }
 
   function readNotificationState() {
     try {
-      return localStorage.getItem(notificationStorageKey);
+      const hasRead = notificationStorageKeys.some(function (key) {
+        return localStorage.getItem(key) === "true";
+      });
+      return hasRead ? "true" : null;
     } catch (error) {
       return null;
     }
@@ -100,7 +108,9 @@
 
   function saveNotificationState() {
     try {
-      localStorage.setItem(notificationStorageKey, "true");
+      notificationStorageKeys.forEach(function (key) {
+        localStorage.setItem(key, "true");
+      });
     } catch (error) {
       return;
     }

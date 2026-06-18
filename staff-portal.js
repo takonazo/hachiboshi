@@ -9,6 +9,7 @@
   const notificationButton = document.querySelector("[data-notification-button]");
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
+  const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
     "hachiboshiNotificationsReadV2",
@@ -78,6 +79,7 @@
   function showDashboard() {
     loginPanel.hidden = true;
     dashboard.hidden = false;
+    startHallucinations();
   }
 
   function hideNotifications() {
@@ -118,5 +120,51 @@
 
   function normalize(value) {
     return String(value).trim().toLowerCase();
+  }
+
+  function startHallucinations() {
+    if (!hallucinationInsect || hallucinationInsect.dataset.started === "true") {
+      return;
+    }
+
+    hallucinationInsect.dataset.started = "true";
+    scheduleHallucination(randomBetween(14000, 28000));
+  }
+
+  function scheduleHallucination(delay) {
+    window.setTimeout(function () {
+      if (dashboard.hidden) {
+        scheduleHallucination(randomBetween(24000, 46000));
+        return;
+      }
+
+      showHallucination();
+      scheduleHallucination(randomBetween(24000, 46000));
+    }, delay);
+  }
+
+  function showHallucination() {
+    const size = randomBetween(28, 42);
+    const x = randomBetween(8, 86);
+    const y = randomBetween(8, 82);
+    const rotation = randomBetween(-24, 24);
+
+    hallucinationInsect.style.width = `${size}px`;
+    hallucinationInsect.style.left = `${x}vw`;
+    hallucinationInsect.style.top = `${y}vh`;
+    hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.92)`;
+    hallucinationInsect.hidden = false;
+    hallucinationInsect.classList.add("is-visible");
+
+    window.setTimeout(function () {
+      hallucinationInsect.classList.remove("is-visible");
+      window.setTimeout(function () {
+        hallucinationInsect.hidden = true;
+      }, 260);
+    }, randomBetween(1700, 2200));
+  }
+
+  function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 })();

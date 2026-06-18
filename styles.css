@@ -720,6 +720,7 @@ h3 {
 
 .archive-hero h1,
 .archive-hero p,
+.archive-hero p:not(.section-label),
 .archive-hero .section-label {
   color: #fff;
 }
@@ -748,6 +749,7 @@ h3 {
 
 .meteor-hero h1,
 .meteor-hero p,
+.meteor-hero p:not(.section-label),
 .meteor-hero .section-label {
   color: #fff;
 }

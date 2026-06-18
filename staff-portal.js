@@ -16,6 +16,7 @@
     "hachiboshiNotificationsReadV3"
   ];
   let hallucinationFrame = null;
+  let hallucinationTimeout = null;
 
   if (!form || !loginPanel || !dashboard) {
     return;
@@ -146,13 +147,14 @@
 
   function showHallucination() {
     const size = randomBetween(70, 105);
-    const x = randomBetween(6, 78);
-    const y = randomBetween(18, 82);
-    const rotation = randomBetween(-8, 8);
-    const travel = randomBetween(64, 96);
-    const rise = -Math.round(travel * randomBetween(42, 58) / 100);
-    const arc = randomBetween(14, 22) * (randomBetween(0, 1) === 0 ? -1 : 1);
-    const duration = randomBetween(2100, 2500);
+    const x = randomBetween(6, 74);
+    const y = randomBetween(24, 82);
+    const rotation = randomBetween(-5, 5);
+    const travel = randomBetween(82, 120);
+    const rise = -Math.round(travel * randomBetween(48, 56) / 100);
+    const duration = randomBetween(1900, 2300);
+    const frameDuration = 1000 / 30;
+    const totalFrames = Math.max(1, Math.round(duration / frameDuration));
     const startTime = performance.now();
     const finalTransform = makeBeeTransform(travel, rise, rotation, 0.98);
 
@@ -160,6 +162,11 @@
     hallucinationInsect.classList.remove("is-fading");
     if (hallucinationFrame) {
       cancelAnimationFrame(hallucinationFrame);
+      hallucinationFrame = null;
+    }
+    if (hallucinationTimeout) {
+      clearTimeout(hallucinationTimeout);
+      hallucinationTimeout = null;
     }
     hallucinationInsect.style.width = `${size}px`;
     hallucinationInsect.style.left = `${x}vw`;
@@ -170,12 +177,11 @@
 
     function renderFrame(now) {
       const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutSine(progress);
-      const wave = Math.sin(Math.PI * eased) * arc;
-      const xOffset = travel * eased;
-      const yOffset = rise * eased + wave;
-      const scale = 0.94 + Math.sin(Math.PI * eased) * 0.06 + eased * 0.04;
+      const frame = Math.min(Math.floor(elapsed / frameDuration), totalFrames);
+      const progress = frame / totalFrames;
+      const xOffset = travel * progress;
+      const yOffset = rise * progress;
+      const scale = 0.96 + progress * 0.02;
 
       hallucinationInsect.style.transform = makeBeeTransform(xOffset, yOffset, rotation, scale);
 
@@ -187,10 +193,11 @@
       hallucinationInsect.style.transform = finalTransform;
       hallucinationInsect.classList.remove("is-visible");
       hallucinationInsect.classList.add("is-fading");
-      window.setTimeout(function () {
+      hallucinationTimeout = window.setTimeout(function () {
         hallucinationInsect.classList.remove("is-fading");
         hallucinationInsect.hidden = true;
         hallucinationFrame = null;
+        hallucinationTimeout = null;
       }, 360);
     }
 
@@ -201,11 +208,7 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function easeInOutSine(progress) {
-    return -(Math.cos(Math.PI * progress) - 1) / 2;
-  }
-
   function makeBeeTransform(x, y, rotation, scale) {
-    return `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rotation}deg) scale(${scale.toFixed(3)})`;
+    return `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) rotate(${rotation}deg) scale(${scale.toFixed(3)})`;
   }
 })();

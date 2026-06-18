@@ -150,11 +150,19 @@
     const rotation = randomBetween(-8, 8);
     const travel = randomBetween(64, 96);
     const rise = -Math.round(travel * randomBetween(42, 58) / 100);
-    const curve = randomBetween(-10, 10);
+    const arc = randomBetween(14, 24);
+    const arcDirection = randomBetween(0, 1) === 0 ? -1 : 1;
+    const arcOffset = arc * arcDirection;
+    const quarterX = Math.round(travel * 0.25);
+    const quarterY = Math.round(rise * 0.25) + Math.round(arcOffset * 0.72);
     const midX = Math.round(travel * 0.52);
-    const midY = Math.round(rise * 0.52) + curve;
+    const midY = Math.round(rise * 0.52) + arcOffset;
+    const threeQuarterX = Math.round(travel * 0.76);
+    const threeQuarterY = Math.round(rise * 0.76) + Math.round(arcOffset * 0.72);
+    const finalTransform = `translate(${travel}px, ${rise}px) rotate(${rotation}deg) scale(0.98)`;
 
     hallucinationInsect.classList.remove("is-visible");
+    hallucinationInsect.classList.remove("is-fading");
     void hallucinationInsect.offsetWidth;
     hallucinationInsect.style.width = `${size}px`;
     hallucinationInsect.style.left = `${x}vw`;
@@ -162,18 +170,25 @@
     hallucinationInsect.style.setProperty("--bee-rotation", `${rotation}deg`);
     hallucinationInsect.style.setProperty("--bee-travel-x", `${travel}px`);
     hallucinationInsect.style.setProperty("--bee-travel-y", `${rise}px`);
+    hallucinationInsect.style.setProperty("--bee-quarter-x", `${quarterX}px`);
+    hallucinationInsect.style.setProperty("--bee-quarter-y", `${quarterY}px`);
     hallucinationInsect.style.setProperty("--bee-mid-x", `${midX}px`);
     hallucinationInsect.style.setProperty("--bee-mid-y", `${midY}px`);
+    hallucinationInsect.style.setProperty("--bee-three-quarter-x", `${threeQuarterX}px`);
+    hallucinationInsect.style.setProperty("--bee-three-quarter-y", `${threeQuarterY}px`);
     hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.94)`;
     hallucinationInsect.hidden = false;
     hallucinationInsect.classList.add("is-visible");
 
     window.setTimeout(function () {
+      hallucinationInsect.style.transform = finalTransform;
       hallucinationInsect.classList.remove("is-visible");
+      hallucinationInsect.classList.add("is-fading");
       window.setTimeout(function () {
+        hallucinationInsect.classList.remove("is-fading");
         hallucinationInsect.hidden = true;
       }, 320);
-    }, randomBetween(1900, 2400));
+    }, randomBetween(2150, 2450));
   }
 
   function randomBetween(min, max) {

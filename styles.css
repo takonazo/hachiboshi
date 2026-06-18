@@ -1146,8 +1146,12 @@ h3 {
   --bee-rotation: 0deg;
   --bee-travel-x: 84px;
   --bee-travel-y: -42px;
+  --bee-quarter-x: 21px;
+  --bee-quarter-y: -4px;
   --bee-mid-x: 44px;
   --bee-mid-y: -14px;
+  --bee-three-quarter-x: 64px;
+  --bee-three-quarter-y: -28px;
   transform: rotate(var(--bee-rotation)) scale(0.94);
   transition: opacity 180ms ease;
 }
@@ -1157,13 +1161,25 @@ h3 {
   animation: beeArcFlight 2.1s ease-in-out forwards;
 }
 
+.hallucination-insect.is-fading {
+  opacity: 0;
+}
+
 @keyframes beeArcFlight {
   0% {
     transform: translate(0, 0) rotate(var(--bee-rotation)) scale(0.94);
   }
 
-  45% {
+  25% {
+    transform: translate(var(--bee-quarter-x), var(--bee-quarter-y)) rotate(var(--bee-rotation)) scale(0.99);
+  }
+
+  50% {
     transform: translate(var(--bee-mid-x), var(--bee-mid-y)) rotate(var(--bee-rotation)) scale(1);
+  }
+
+  75% {
+    transform: translate(var(--bee-three-quarter-x), var(--bee-three-quarter-y)) rotate(var(--bee-rotation)) scale(0.99);
   }
 
   100% {

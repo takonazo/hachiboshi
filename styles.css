@@ -1208,6 +1208,26 @@ h3 {
   color: #bde2f8;
 }
 
+.portal-board-action {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-weight: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: rgba(127, 185, 221, 0.45);
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.portal-board-action:hover,
+.portal-board-action:focus-visible {
+  color: #bde2f8;
+  outline: 0;
+}
+
 .portal-board p,
 .portal-note p,
 .portal-note li {
@@ -1260,10 +1280,11 @@ h3 {
 .portal-lock-layout {
   display: grid;
   gap: 24px;
+  justify-items: center;
 }
 
 .portal-lock-card {
-  max-width: 620px;
+  width: min(620px, 100%);
 }
 
 .portal-card h1,
@@ -1276,15 +1297,13 @@ h3 {
 
 .portal-lock-question {
   margin: 0;
-  padding: 14px 16px;
   color: #d8e6ef;
-  background: rgba(3, 12, 19, 0.44);
-  border: 1px solid rgba(127, 185, 221, 0.18);
-  border-radius: 4px;
   font-weight: 900;
 }
 
 .portal-secure-document {
+  width: min(900px, 100%);
+  margin: 0 auto;
   padding: 34px;
   background: rgba(12, 27, 38, 0.82);
   border: 1px solid rgba(127, 185, 221, 0.22);

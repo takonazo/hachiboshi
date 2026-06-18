@@ -17,6 +17,9 @@
   const notificationButton = document.querySelector("[data-notification-button]");
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
+  const messageModal = document.querySelector("[data-message-modal]");
+  const messageOpenButtons = document.querySelectorAll("[data-open-message]");
+  const messageCloseButtons = document.querySelectorAll("[data-close-message]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
@@ -89,6 +92,24 @@
     });
   }
 
+  messageOpenButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      showMessageModal();
+    });
+  });
+
+  messageCloseButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      hideMessageModal();
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      hideMessageModal();
+    }
+  });
+
   function showDashboard() {
     loginPanel.hidden = true;
     dashboard.hidden = false;
@@ -99,6 +120,19 @@
     if (notificationPanel && notificationButton) {
       notificationPanel.hidden = true;
       notificationButton.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function showMessageModal() {
+    if (messageModal) {
+      hideNotifications();
+      messageModal.hidden = false;
+    }
+  }
+
+  function hideMessageModal() {
+    if (messageModal) {
+      messageModal.hidden = true;
     }
   }
 

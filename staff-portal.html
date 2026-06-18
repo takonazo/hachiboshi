@@ -130,7 +130,9 @@
             <article>
               <time datetime="2026-06-10">2026.06.10</time>
               <div>
-                <h4><a href="portal-new-employees-review.html">新入社員紹介ページの文面確認</a></h4>
+                <h4>
+                  <button class="portal-board-action" type="button" data-open-message>新入社員紹介ページの文面確認</button>
+                </h4>
                 <p>コーポレートコミュニケーション室担当分のプロフィール文を確認してください。</p>
               </div>
             </article>
@@ -157,6 +159,22 @@
         <img class="hallucination-insect" data-hallucination-insect src="assets/realbee.png" alt="" aria-hidden="true" hidden>
       </section>
     </main>
+    <div class="portal-message-overlay" data-message-modal hidden>
+      <button class="portal-message-backdrop" type="button" data-close-message aria-label="メッセージを閉じる"></button>
+      <section class="portal-message-dialog" role="dialog" aria-modal="true" aria-labelledby="message-title">
+        <button class="portal-message-close" type="button" data-close-message aria-label="閉じる">×</button>
+        <p class="portal-card-label">Direct Message</p>
+        <h2 id="message-title">広報担当より 星野さんへ</h2>
+        <p>
+          新入社員紹介ページの件、公開前確認ありがとうございます。
+          本文はおおむね問題ありませんが、個人で運用されているXアカウントのID掲載については削除した方がよいかと思います。
+        </p>
+        <p>
+          外部からの接触経路を会社ページ上に残す必要性が低く、今回の掲載意図とも少しずれて見えます。
+          念のため、本日中に削除方向で進めて問題ないかだけご確認ください。
+        </p>
+      </section>
+    </div>
     <script src="staff-portal.js"></script>
   </body>
 </html>

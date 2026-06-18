@@ -569,6 +569,28 @@ h3 {
   color: var(--green);
 }
 
+.color-lock-hint {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.color-lock-hint p {
+  margin: 0;
+  color: var(--blue-dark);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.color-lock-hint img {
+  display: block;
+  width: min(620px, 92%);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 12px 34px rgba(10, 53, 98, 0.1);
+}
+
 .newsletter-preview {
   margin-top: 28px;
 }

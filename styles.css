@@ -1530,6 +1530,21 @@ h3 {
     height: auto;
     min-height: 0;
   }
+
+  .portal-dashboard {
+    gap: 18px;
+    padding: 22px 0 84px;
+  }
+
+  .portal-sidebar dl {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .portal-sidebar dl div {
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1580,6 +1595,33 @@ h3 {
     padding: 54px 0;
   }
 
+  .portal-login,
+  .portal-dashboard {
+    width: min(100% - 28px, 420px);
+  }
+
+  .portal-login {
+    align-content: center;
+    gap: 22px;
+    min-height: 100svh;
+    padding: 34px 0 88px;
+  }
+
+  .portal-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .portal-login-copy h1 {
+    margin-bottom: 14px;
+    font-size: 40px;
+  }
+
+  .portal-login-copy p:last-child {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
   .business-card,
   .profile-card,
   .document-sheet,
@@ -1593,6 +1635,16 @@ h3 {
   .portal-secure-document,
   .portal-sidebar {
     padding: 24px;
+  }
+
+  .portal-card {
+    gap: 14px;
+  }
+
+  .portal-card input,
+  .portal-card button,
+  .portal-logout {
+    min-height: 46px;
   }
 
   .research-list div,
@@ -1621,6 +1673,114 @@ h3 {
   .portal-board-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .portal-dashboard {
+    gap: 16px;
+    padding: 18px 0 92px;
+  }
+
+  .portal-sidebar {
+    gap: 12px;
+  }
+
+  .portal-sidebar h1 {
+    font-size: 27px;
+  }
+
+  .portal-sidebar p {
+    font-size: 14px;
+  }
+
+  .portal-sidebar dl {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 2px 0 6px;
+  }
+
+  .portal-sidebar dl div {
+    padding-top: 8px;
+    border-top: 1px solid rgba(127, 185, 221, 0.18);
+  }
+
+  .portal-main {
+    gap: 14px;
+  }
+
+  .portal-main-header {
+    gap: 12px;
+    padding-top: 0;
+  }
+
+  .portal-main h2 {
+    font-size: 24px;
+  }
+
+  .portal-notification {
+    align-self: flex-end;
+    margin-top: -58px;
+  }
+
+  .portal-bell,
+  .portal-audio-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .notification-panel {
+    right: -2px;
+    width: min(312px, calc(100vw - 28px));
+  }
+
+  .portal-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .portal-metrics div {
+    min-height: 76px;
+    padding: 14px 10px;
+  }
+
+  .portal-metrics strong {
+    font-size: 30px;
+  }
+
+  .portal-metrics span {
+    display: block;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .portal-board article {
+    padding: 16px 0;
+  }
+
+  .portal-board h4 {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .portal-board p,
+  .portal-note li {
+    font-size: 13px;
+  }
+
+  .portal-message-overlay {
+    padding: 16px;
+  }
+
+  .portal-message-dialog {
+    padding: 24px;
+  }
+
+  .portal-message-dialog h2 {
+    font-size: 21px;
+  }
+
+  .portal-audio-toggle {
+    right: 16px;
+    bottom: 16px;
   }
 
   .meteor-image-grid {

@@ -32,7 +32,7 @@
   let hallucinationTimeout = null;
   let portalAudioStarted = false;
   let portalAudioFadeFrame = null;
-  const portalAudioTargetVolume = 0.28;
+  const portalAudioTargetVolume = 0.084;
 
   if (!form || !loginPanel || !dashboard) {
     return;

@@ -144,15 +144,25 @@
   }
 
   function showHallucination() {
-    const size = randomBetween(28, 42);
-    const x = randomBetween(8, 86);
-    const y = randomBetween(8, 82);
-    const rotation = randomBetween(-24, 24);
+    const size = randomBetween(70, 105);
+    const x = randomBetween(8, 82);
+    const y = randomBetween(10, 76);
+    const rotation = randomBetween(-28, 28);
+    const direction = randomBetween(0, 1) === 0 ? -1 : 1;
+    const travel = randomBetween(72, 130) * direction;
+    const drift = randomBetween(-34, 34);
+    const curve = randomBetween(-26, 26);
 
+    hallucinationInsect.classList.remove("is-visible");
+    void hallucinationInsect.offsetWidth;
     hallucinationInsect.style.width = `${size}px`;
     hallucinationInsect.style.left = `${x}vw`;
     hallucinationInsect.style.top = `${y}vh`;
-    hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.92)`;
+    hallucinationInsect.style.setProperty("--bee-rotation", `${rotation}deg`);
+    hallucinationInsect.style.setProperty("--bee-travel-x", `${travel}px`);
+    hallucinationInsect.style.setProperty("--bee-travel-y", `${drift}px`);
+    hallucinationInsect.style.setProperty("--bee-curve-y", `${curve}px`);
+    hallucinationInsect.style.transform = `rotate(${rotation}deg) scale(0.94)`;
     hallucinationInsect.hidden = false;
     hallucinationInsect.classList.add("is-visible");
 
@@ -160,8 +170,8 @@
       hallucinationInsect.classList.remove("is-visible");
       window.setTimeout(function () {
         hallucinationInsect.hidden = true;
-      }, 260);
-    }, randomBetween(1700, 2200));
+      }, 320);
+    }, randomBetween(1900, 2400));
   }
 
   function randomBetween(min, max) {

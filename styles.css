@@ -1136,19 +1136,38 @@ h3 {
 .hallucination-insect {
   position: fixed;
   z-index: 35;
-  width: 36px;
+  width: 90px;
   height: auto;
   pointer-events: none;
   opacity: 0;
   border-radius: 50%;
   filter: saturate(1.08) contrast(1.1) drop-shadow(0 7px 10px rgba(0, 0, 0, 0.32));
   mix-blend-mode: normal;
-  transition: opacity 180ms ease, transform 180ms ease;
+  --bee-rotation: 0deg;
+  --bee-travel-x: 110px;
+  --bee-travel-y: 0px;
+  --bee-curve-y: 24px;
+  transform: rotate(var(--bee-rotation)) scale(0.94);
+  transition: opacity 180ms ease;
 }
 
 .hallucination-insect.is-visible {
   opacity: 0.84;
-  transform: rotate(0deg) scale(1);
+  animation: beeArcFlight 2.1s ease-in-out forwards;
+}
+
+@keyframes beeArcFlight {
+  0% {
+    transform: translate(0, 0) rotate(var(--bee-rotation)) scale(0.94);
+  }
+
+  45% {
+    transform: translate(calc(var(--bee-travel-x) * 0.52), var(--bee-curve-y)) rotate(var(--bee-rotation)) scale(1);
+  }
+
+  100% {
+    transform: translate(var(--bee-travel-x), var(--bee-travel-y)) rotate(var(--bee-rotation)) scale(0.98);
+  }
 }
 
 @media (max-width: 1080px) {

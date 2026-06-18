@@ -46,6 +46,20 @@
         </article>
       </section>
     </main>
+    <button class="portal-audio-toggle" type="button" data-audio-toggle aria-label="BGMをミュート" title="BGMをミュート">
+      <svg class="audio-icon audio-icon-on" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+        <path d="M16 8.5c1 .9 1.5 2.1 1.5 3.5S17 14.6 16 15.5"></path>
+        <path d="M18.4 6.1A8 8 0 0 1 21 12a8 8 0 0 1-2.6 5.9"></path>
+      </svg>
+      <svg class="audio-icon audio-icon-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+        <path d="M17 9l5 5"></path>
+        <path d="M22 9l-5 5"></path>
+      </svg>
+    </button>
+    <audio data-portal-audio src="assets/silver-city-secret.mp3" preload="auto" loop></audio>
     <script src="portal-lock.js"></script>
+    <script src="portal-audio.js"></script>
   </body>
 </html>

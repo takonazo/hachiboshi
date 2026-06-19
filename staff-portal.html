@@ -137,22 +137,13 @@
                 <p>アクセス制限あり</p>
               </div>
             </article>
-            <article class="portal-notice-detail">
+            <article>
               <time datetime="2025-06-01">2025.06.01</time>
               <div>
-                <h4>今月の暗号解読方法のお知らせ</h4>
-                <p>今月の暗号解読方法をお知らせします。</p>
-                <p>
-                  組織の暗号を解読する際は、暗号によって、以下のいずれかの方法を用いることでスムーズな解読が可能です。
-                </p>
-                <p class="portal-notice-heading">今月の手順</p>
-                <ul class="portal-notice-steps">
-                  <li>赤い<span class="corrupt-fragment red">破損データ</span>の中を読む</li>
-                  <li>青い<span class="corrupt-fragment blue">破損データ</span>の中を読む</li>
-                </ul>
-                <p class="portal-notice-update">
-                  ※<span data-current-date>本日</span>追記 現在上記の暗号解読手順のデータが破損し、確認できなくなっております。現在ITチームが対応中です。
-                </p>
+                <h4>
+                  <button class="portal-board-action" type="button" data-open-cipher>今月の暗号解読方法のお知らせ</button>
+                </h4>
+                <p>組織内暗号の解読手順について。</p>
               </div>
             </article>
           </section>
@@ -184,6 +175,26 @@
         <p>
           今回の掲載意図とも少しずれて見えます。
           念のため、本日中に削除方向で進めて問題ないかだけご返信ください。
+        </p>
+      </section>
+    </div>
+    <div class="portal-message-overlay" data-cipher-modal hidden>
+      <button class="portal-message-backdrop" type="button" data-close-cipher aria-label="お知らせを閉じる"></button>
+      <section class="portal-message-dialog" role="dialog" aria-modal="true" aria-labelledby="cipher-title">
+        <button class="portal-message-close" type="button" data-close-cipher aria-label="閉じる">×</button>
+        <p class="portal-card-label">Internal Notice</p>
+        <h2 id="cipher-title">今月の暗号解読方法のお知らせ</h2>
+        <p>今月の暗号解読方法をお知らせします。</p>
+        <p>
+          組織の暗号を解読する際は、暗号によって、以下のいずれかの方法を用いることでスムーズな解読が可能です。
+        </p>
+        <p class="portal-notice-heading">今月の手順</p>
+        <ul class="portal-notice-steps">
+          <li>赤い##の中を読む</li>
+          <li>青い##の中を読む</li>
+        </ul>
+        <p class="portal-notice-update">
+          ※<span data-current-date>本日</span>追記 現在上記の暗号解読手順のデータが破損し、確認できなくなっております。現在ITチームが対応中です。
         </p>
       </section>
     </div>

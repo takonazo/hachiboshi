@@ -20,6 +20,9 @@
   const messageModal = document.querySelector("[data-message-modal]");
   const messageOpenButtons = document.querySelectorAll("[data-open-message]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
+  const cipherModal = document.querySelector("[data-cipher-modal]");
+  const cipherOpenButtons = document.querySelectorAll("[data-open-cipher]");
+  const cipherCloseButtons = document.querySelectorAll("[data-close-cipher]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const currentDateLabels = document.querySelectorAll("[data-current-date]");
   const notificationStorageKeys = [
@@ -107,9 +110,22 @@
     });
   });
 
+  cipherOpenButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      showCipherModal();
+    });
+  });
+
+  cipherCloseButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      hideCipherModal();
+    });
+  });
+
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       hideMessageModal();
+      hideCipherModal();
     }
   });
 
@@ -129,6 +145,7 @@
   function showMessageModal() {
     if (messageModal) {
       hideNotifications();
+      hideCipherModal();
       messageModal.hidden = false;
     }
   }
@@ -136,6 +153,20 @@
   function hideMessageModal() {
     if (messageModal) {
       messageModal.hidden = true;
+    }
+  }
+
+  function showCipherModal() {
+    if (cipherModal) {
+      hideNotifications();
+      hideMessageModal();
+      cipherModal.hidden = false;
+    }
+  }
+
+  function hideCipherModal() {
+    if (cipherModal) {
+      cipherModal.hidden = true;
     }
   }
 

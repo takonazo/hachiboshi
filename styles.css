@@ -1287,14 +1287,6 @@ h3 {
   color: #a9bac7;
 }
 
-.portal-notice-detail {
-  align-items: start;
-}
-
-.portal-notice-detail p + p {
-  margin-top: 10px;
-}
-
 .portal-notice-heading {
   margin-top: 14px !important;
   color: #d8e6ef !important;
@@ -1307,29 +1299,6 @@ h3 {
   margin: 10px 0 0;
   padding-left: 1.3em;
   color: #d8e6ef;
-}
-
-.corrupt-fragment {
-  display: inline-block;
-  min-width: 6.5em;
-  margin: 0 0.28em;
-  padding: 0 0.45em;
-  color: transparent;
-  border-radius: 3px;
-  text-shadow: 0 0 9px currentColor;
-  user-select: none;
-}
-
-.corrupt-fragment.red {
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 86, 91, 0.08) 0 4px, rgba(255, 86, 91, 0.28) 4px 7px),
-    #c52f35;
-}
-
-.corrupt-fragment.blue {
-  background:
-    repeating-linear-gradient(90deg, rgba(86, 158, 255, 0.08) 0 4px, rgba(86, 158, 255, 0.28) 4px 7px),
-    #2469c9;
 }
 
 .portal-notice-update {

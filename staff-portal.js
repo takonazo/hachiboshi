@@ -21,6 +21,7 @@
   const messageOpenButtons = document.querySelectorAll("[data-open-message]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
+  const currentDateLabels = document.querySelectorAll("[data-current-date]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
     "hachiboshiNotificationsReadV2",
@@ -32,6 +33,8 @@
   if (!form || !loginPanel || !dashboard) {
     return;
   }
+
+  setCurrentDateLabels();
 
   if (sessionStorage.getItem("hachiboshiPortal") === "hoshino") {
     showDashboard();
@@ -167,6 +170,23 @@
 
   function normalize(value) {
     return String(value).trim().toLowerCase();
+  }
+
+  function setCurrentDateLabels() {
+    if (!currentDateLabels.length) {
+      return;
+    }
+
+    const now = new Date();
+    const dateText = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0")
+    ].join(".");
+
+    currentDateLabels.forEach(function (label) {
+      label.textContent = dateText;
+    });
   }
 
   function startHallucinations() {

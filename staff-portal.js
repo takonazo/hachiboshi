@@ -18,10 +18,8 @@
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
   const messageModal = document.querySelector("[data-message-modal]");
-  const messageOpenButtons = document.querySelectorAll("[data-open-message]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
   const cipherModal = document.querySelector("[data-cipher-modal]");
-  const cipherOpenButtons = document.querySelectorAll("[data-open-cipher]");
   const cipherCloseButtons = document.querySelectorAll("[data-close-cipher]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const currentDateLabels = document.querySelectorAll("[data-current-date]");
@@ -98,21 +96,20 @@
     });
   }
 
-  messageOpenButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
+  document.addEventListener("click", function (event) {
+    if (event.target.closest("[data-open-message]")) {
       showMessageModal();
-    });
+      return;
+    }
+
+    if (event.target.closest("[data-open-cipher]")) {
+      showCipherModal();
+    }
   });
 
   messageCloseButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       hideMessageModal();
-    });
-  });
-
-  cipherOpenButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      showCipherModal();
     });
   });
 

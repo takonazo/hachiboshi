@@ -26,6 +26,12 @@
       url: "meteor.html",
       excerpt: "Project:Meteorに関する社内確認用資料を掲載しています。",
       terms: ["Meteor", "meteor", "ミーティア", "Project:Meteor", "プロジェクトミーティア"]
+    },
+    {
+      title: "内部監査控え",
+      url: "distribution-ledger.html",
+      excerpt: "八星会関連輸送記録と未承認収益に関する照合メモです。",
+      terms: ["銀蜂ルート", "銀蜂", "流通台帳", "八星会", "内部監査控え"]
     }
   ];
 

@@ -1391,6 +1391,13 @@ h3 {
   color: #a9bac7;
 }
 
+.secure-document-subtitle {
+  margin: 0 0 18px;
+  color: #d8e6ef !important;
+  font-size: 18px;
+  font-weight: 900;
+}
+
 .secure-record {
   display: grid;
   gap: 0;
@@ -1473,8 +1480,12 @@ h3 {
 }
 
 .secure-document-list p {
-  margin: 0;
+  margin: 0 0 12px;
   color: #a9bac7;
+}
+
+.secure-document-list p:last-child {
+  margin-bottom: 0;
 }
 
 .portal-message-overlay {

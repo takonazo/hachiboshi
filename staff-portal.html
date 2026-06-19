@@ -141,7 +141,7 @@
               <time datetime="2025-06-01">2025.06.01</time>
               <div>
                 <h4>
-                  <button class="portal-board-action" type="button" data-open-cipher>今月の暗号解読方法のお知らせ</button>
+                  <button class="portal-board-action" type="button" data-open-cipher onclick="window.hachiboshiOpenCipherNotice ? window.hachiboshiOpenCipherNotice() : (document.querySelector('[data-cipher-modal]').hidden = false)">今月の暗号解読方法のお知らせ</button>
                 </h4>
                 <p>組織内暗号の解読手順について。</p>
               </div>
@@ -179,9 +179,9 @@
       </section>
     </div>
     <div class="portal-message-overlay" data-cipher-modal hidden>
-      <button class="portal-message-backdrop" type="button" data-close-cipher aria-label="お知らせを閉じる"></button>
+      <button class="portal-message-backdrop" type="button" data-close-cipher onclick="window.hachiboshiCloseCipherNotice ? window.hachiboshiCloseCipherNotice() : (this.closest('[data-cipher-modal]').hidden = true)" aria-label="お知らせを閉じる"></button>
       <section class="portal-message-dialog" role="dialog" aria-modal="true" aria-labelledby="cipher-title">
-        <button class="portal-message-close" type="button" data-close-cipher aria-label="閉じる">×</button>
+        <button class="portal-message-close" type="button" data-close-cipher onclick="window.hachiboshiCloseCipherNotice ? window.hachiboshiCloseCipherNotice() : (this.closest('[data-cipher-modal]').hidden = true)" aria-label="閉じる">×</button>
         <p class="portal-card-label">Internal Notice</p>
         <h2 id="cipher-title">今月の暗号解読方法のお知らせ</h2>
         <p>今月の暗号解読方法をお知らせします。</p>

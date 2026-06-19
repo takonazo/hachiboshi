@@ -36,6 +36,8 @@
   }
 
   setCurrentDateLabels();
+  window.hachiboshiOpenCipherNotice = showCipherModal;
+  window.hachiboshiCloseCipherNotice = hideCipherModal;
 
   if (sessionStorage.getItem("hachiboshiPortal") === "hoshino") {
     showDashboard();

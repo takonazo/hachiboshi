@@ -175,18 +175,18 @@
     }
 
     hallucinationInsect.dataset.started = "true";
-    scheduleHallucination(randomBetween(4000, 9000));
+    scheduleHallucination(randomBetween(12000, 22000));
   }
 
   function scheduleHallucination(delay) {
     window.setTimeout(function () {
       if (dashboard.hidden) {
-        scheduleHallucination(randomBetween(24000, 46000));
+        scheduleHallucination(randomBetween(80000, 153000));
         return;
       }
 
       showHallucination();
-      scheduleHallucination(randomBetween(24000, 46000));
+      scheduleHallucination(randomBetween(80000, 153000));
     }, delay);
   }
 

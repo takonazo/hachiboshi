@@ -46,6 +46,7 @@
 
       if (matched) {
         saveUnlockedState();
+        window.dispatchEvent(new Event("hachiboshiNewsletterUnlocked"));
         unlock(true);
         return;
       }

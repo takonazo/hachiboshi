@@ -14,8 +14,12 @@
   const message = document.querySelector("[data-color-message]");
   const content = document.querySelector("[data-newsletter-content]");
   const gate = document.querySelector("[data-color-gate]");
+  const powderPuzzleImage = document.querySelector("[data-powder-puzzle-image]");
+  const powderPuzzleHotspots = document.querySelector("[data-powder-puzzle-hotspots]");
   const storageKey = "hachiboshiNewsletterJuneUnlocked";
   const indexes = [0, 0, 0, 0];
+  const powderPuzzleAnswer = ["tanuki", "kokeshi", "mosquito"];
+  let powderPuzzleProgress = 0;
 
   if (readUnlockedState() === "true") {
     unlock(false);
@@ -34,6 +38,17 @@
     });
     paint(square, indexes[slotIndex]);
   });
+
+  if (powderPuzzleHotspots && powderPuzzleImage) {
+    powderPuzzleHotspots.addEventListener("click", function (event) {
+      const hotspot = event.target.closest("[data-puzzle-item]");
+      if (!hotspot) {
+        return;
+      }
+
+      advancePowderPuzzle(hotspot.dataset.puzzleItem || "");
+    });
+  }
 
   if (checkButton) {
     checkButton.addEventListener("click", function () {
@@ -64,6 +79,26 @@
 
   function wrap(index) {
     return (index + palette.length) % palette.length;
+  }
+
+  function advancePowderPuzzle(item) {
+    if (item === powderPuzzleAnswer[powderPuzzleProgress]) {
+      powderPuzzleProgress += 1;
+      if (powderPuzzleProgress === powderPuzzleAnswer.length) {
+        revealPowderPuzzle();
+      }
+      return;
+    }
+
+    powderPuzzleProgress = item === powderPuzzleAnswer[0] ? 1 : 0;
+  }
+
+  function revealPowderPuzzle() {
+    powderPuzzleImage.src = "assets/powder-puzzle-grid.png";
+    powderPuzzleImage.alt = "暗号解読用の記入欄";
+    if (powderPuzzleHotspots) {
+      powderPuzzleHotspots.hidden = true;
+    }
   }
 
   function unlock(shouldScroll) {

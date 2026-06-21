@@ -577,19 +577,48 @@ h3 {
   margin-top: 20px;
 }
 
-.color-lock-hint p {
-  margin: 0;
-  color: var(--blue-dark);
-  font-size: 18px;
-  font-weight: 900;
-}
-
 .color-lock-hint img {
   display: block;
   width: min(620px, 92%);
   border: 1px solid var(--line);
   border-radius: 6px;
   box-shadow: 0 12px 34px rgba(10, 53, 98, 0.1);
+}
+
+.powder-puzzle-stage {
+  position: relative;
+  width: min(720px, 100%);
+}
+
+.powder-puzzle-image {
+  width: 100% !important;
+}
+
+.powder-puzzle-hotspots {
+  position: absolute;
+  inset: 0;
+}
+
+.powder-puzzle-hotspots[hidden] {
+  display: none;
+}
+
+.powder-puzzle-hotspot {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: calc(var(--w) * 1%);
+  height: calc(var(--h) * 1%);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.powder-puzzle-hotspot:focus-visible {
+  outline: 2px solid rgba(11, 92, 171, 0.55);
+  outline-offset: 2px;
 }
 
 .newsletter-preview {

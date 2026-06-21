@@ -1005,6 +1005,12 @@ h3 {
   cursor: pointer;
 }
 
+.meteor-symbol-lock.is-complete button {
+  color: #98a5ad;
+  cursor: default;
+  opacity: 0.48;
+}
+
 .meteor-symbol-slot [data-symbol-display] {
   display: grid;
   place-items: center;
@@ -1018,6 +1024,21 @@ h3 {
   font-size: clamp(14px, 2.8vw, 28px);
   font-weight: 900;
   line-height: 1;
+}
+
+.meteor-symbol-result {
+  position: absolute;
+  left: 67.8%;
+  top: 31.4%;
+  z-index: 4;
+  color: var(--green);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(75, 146, 124, 0.3);
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: clamp(12px, 2vw, 18px);
+  font-weight: 900;
+  line-height: 1.2;
 }
 
 .meteor-final-reveal {
@@ -1038,23 +1059,25 @@ h3 {
   gap: 20px;
 }
 
-.meteor-final-placeholder {
+.meteor-final-frame {
   margin: 0;
 }
 
-.meteor-final-placeholder div {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  color: var(--blue-dark);
-  background: var(--blue-soft);
-  border: 1px dashed #92afbc;
+.meteor-final-frame img {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: 6px;
-  font-size: 20px;
-  font-weight: 900;
+  box-shadow: 0 16px 44px rgba(10, 53, 98, 0.12);
 }
 
-.meteor-final-placeholder figcaption {
+.meteor-final-frame.small img {
+  width: min(620px, 86%);
+  margin: 0 auto;
+}
+
+.meteor-final-frame figcaption {
   margin-top: 8px;
   color: var(--muted);
   font-size: 14px;
@@ -2150,6 +2173,13 @@ h3 {
   .meteor-symbol-slot button {
     height: 14px;
     font-size: 10px;
+  }
+
+  .meteor-symbol-result {
+    left: 67%;
+    top: 32.5%;
+    padding: 2px 8px;
+    font-size: 11px;
   }
 
   .meteor-complete-modal div {

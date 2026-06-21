@@ -25,10 +25,15 @@
     ]
   };
   const symbolChoices = ["♡", "♢", "☁", "☀", "☾", "☆"];
+  const symbolAnswer = ["♢", "☆", "♡", "☀", "☾"];
   const solved = {};
   const final = document.querySelector("[data-meteor-final]");
   const completeModal = document.querySelector("[data-meteor-complete-modal]");
+  const symbolLock = document.querySelector("[data-meteor-symbol-lock]");
+  const symbolResult = document.querySelector("[data-meteor-symbol-result]");
+  const symbolIndexes = [];
   let finalShown = false;
+  let symbolSolved = false;
 
   Object.keys(puzzles).forEach(function (id) {
     solved[id] = [];
@@ -76,16 +81,22 @@
     });
   });
 
-  document.querySelectorAll("[data-meteor-symbol-slot]").forEach(function (slot) {
+  document.querySelectorAll("[data-meteor-symbol-slot]").forEach(function (slot, slotIndex) {
     let index = 0;
     const display = slot.querySelector("[data-symbol-display]");
     const buttons = slot.querySelectorAll("[data-symbol-step]");
 
+    symbolIndexes[slotIndex] = index;
     renderSymbol(display, index);
     buttons.forEach(function (button) {
       button.addEventListener("click", function () {
+        if (symbolSolved) {
+          return;
+        }
         index = wrapSymbol(index + (button.dataset.symbolStep === "prev" ? -1 : 1));
+        symbolIndexes[slotIndex] = index;
         renderSymbol(display, index);
+        checkSymbolAnswer();
       });
     });
   });
@@ -159,7 +170,7 @@
   }
 
   function maybeShowFinalReveal() {
-    if (finalShown || !isPuzzleComplete("6-5") || !isPuzzleComplete("6-7")) {
+    if (finalShown || !symbolSolved || !isPuzzleComplete("6-5") || !isPuzzleComplete("6-7")) {
       return;
     }
 
@@ -186,6 +197,31 @@
     if (display) {
       display.textContent = symbolChoices[index];
     }
+  }
+
+  function checkSymbolAnswer() {
+    const selected = symbolIndexes.map(function (index) {
+      return symbolChoices[index];
+    });
+    const matched = selected.length === symbolAnswer.length && selected.every(function (symbol, index) {
+      return symbol === symbolAnswer[index];
+    });
+
+    if (!matched) {
+      return;
+    }
+
+    symbolSolved = true;
+    if (symbolLock) {
+      symbolLock.classList.add("is-complete");
+      symbolLock.querySelectorAll("button").forEach(function (button) {
+        button.disabled = true;
+      });
+    }
+    if (symbolResult) {
+      symbolResult.hidden = false;
+    }
+    maybeShowFinalReveal();
   }
 
   function wrapSymbol(index) {

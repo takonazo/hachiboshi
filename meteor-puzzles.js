@@ -52,7 +52,7 @@
       const matched = findMatchedAnswer(id, input.value);
 
       if (!matched) {
-        setMessage(message, "まだ一致しません。", false);
+        setMessage(message, "間違っているようです。確実に正しい答えだという確信がある場合は、書き方を変えてみてください。例：ringo→APPLE、リンゴ、など", false);
         return;
       }
 

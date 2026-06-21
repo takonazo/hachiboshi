@@ -42,42 +42,146 @@
       <section class="section-inner meteor-panel">
         <div class="section-heading">
           <p class="section-label">Image Records</p>
-          <h2>添付画像</h2>
-          <p>画像データは準備中です。必要な資料がそろい次第、下記の枠内に追加してください。</p>
+          <h2>添付資料</h2>
+          <p>
+            以下の資料Vは、危険物質Xの特徴を示したものである。I〜IVの謎を解くと、Vの内容を完成させることができる。
+            Vの内容が完成したら、指定された配列に従ってVIIを行え。VとVIIの正答をすべて入力すると新たな情報が与えられる。
+          </p>
         </div>
 
-        <div class="meteor-image-grid">
-          <figure class="meteor-image-frame">
-            <div class="meteor-image-placeholder">
-              <span>画像 01</span>
-              <small>観察記録</small>
+        <div class="meteor-puzzle-list" data-meteor-puzzles>
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-1">
+            <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-1.png" alt="資料I">
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
+
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-2">
+            <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-2.png" alt="資料II">
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
+
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-3">
+            <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-3.png" alt="資料III">
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
+
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-4">
+            <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-4.png" alt="資料IV">
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
+
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-5">
+            <div class="meteor-v-stage">
+              <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-5.png" alt="資料V">
+              <span class="meteor-v-fill meteor-v-fill-iii" data-meteor-v-fill="6-3" hidden>緑</span>
+              <span class="meteor-v-fill meteor-v-fill-iv" data-meteor-v-fill="6-4" hidden>青</span>
+              <div class="meteor-symbol-lock" data-meteor-symbol-lock aria-label="記号配列">
+                <div class="meteor-symbol-slot" data-meteor-symbol-slot>
+                  <button type="button" data-symbol-step="prev" aria-label="前の候補">▲</button>
+                  <div data-symbol-display>♡</div>
+                  <button type="button" data-symbol-step="next" aria-label="次の候補">▼</button>
+                </div>
+                <div class="meteor-symbol-slot" data-meteor-symbol-slot>
+                  <button type="button" data-symbol-step="prev" aria-label="前の候補">▲</button>
+                  <div data-symbol-display>♡</div>
+                  <button type="button" data-symbol-step="next" aria-label="次の候補">▼</button>
+                </div>
+                <div class="meteor-symbol-slot" data-meteor-symbol-slot>
+                  <button type="button" data-symbol-step="prev" aria-label="前の候補">▲</button>
+                  <div data-symbol-display>♡</div>
+                  <button type="button" data-symbol-step="next" aria-label="次の候補">▼</button>
+                </div>
+                <div class="meteor-symbol-slot" data-meteor-symbol-slot>
+                  <button type="button" data-symbol-step="prev" aria-label="前の候補">▲</button>
+                  <div data-symbol-display>♡</div>
+                  <button type="button" data-symbol-step="next" aria-label="次の候補">▼</button>
+                </div>
+                <div class="meteor-symbol-slot" data-meteor-symbol-slot>
+                  <button type="button" data-symbol-step="prev" aria-label="前の候補">▲</button>
+                  <div data-symbol-display>♡</div>
+                  <button type="button" data-symbol-step="next" aria-label="次の候補">▼</button>
+                </div>
+              </div>
             </div>
-            <figcaption>初期確認資料</figcaption>
-          </figure>
-          <figure class="meteor-image-frame">
-            <div class="meteor-image-placeholder">
-              <span>画像 02</span>
-              <small>分析結果</small>
-            </div>
-            <figcaption>品質評価室提出分</figcaption>
-          </figure>
-          <figure class="meteor-image-frame">
-            <div class="meteor-image-placeholder">
-              <span>画像 03</span>
-              <small>現場記録</small>
-            </div>
-            <figcaption>研究開発本部控え</figcaption>
-          </figure>
-          <figure class="meteor-image-frame">
-            <div class="meteor-image-placeholder">
-              <span>画像 04</span>
-              <small>共有待ち</small>
-            </div>
-            <figcaption>追加資料</figcaption>
-          </figure>
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
+
+          <article class="meteor-puzzle-card" data-meteor-puzzle="6-7">
+            <img class="meteor-puzzle-image" src="assets/meteor-puzzle-6-7.png" alt="資料VII">
+            <form class="meteor-answer-form" data-meteor-answer-form>
+              <label>
+                <span>解答</span>
+                <input data-meteor-answer-input type="text" autocomplete="off" autocapitalize="off">
+              </label>
+              <button class="button compact" type="submit">判定</button>
+            </form>
+            <p class="meteor-answer-message" data-meteor-answer-message aria-live="polite"></p>
+            <p class="meteor-answer-correct" data-meteor-answer-correct></p>
+          </article>
         </div>
+
+        <section class="meteor-final-reveal" data-meteor-final hidden>
+          <div class="section-heading">
+            <p class="section-label">Additional File</p>
+            <h2>新たな情報</h2>
+          </div>
+          <div class="meteor-final-grid">
+            <figure class="meteor-final-placeholder">
+              <div>仮置き画像 01</div>
+              <figcaption>追加資料A</figcaption>
+            </figure>
+            <figure class="meteor-final-placeholder">
+              <div>仮置き画像 02</div>
+              <figcaption>追加資料B</figcaption>
+            </figure>
+          </div>
+        </section>
       </section>
     </main>
+
+    <div class="meteor-complete-modal" data-meteor-complete-modal hidden>
+      <div>VとVIIの情報をすべて揃えた！</div>
+    </div>
 
     <footer class="site-footer">
       <div>
@@ -86,6 +190,7 @@
       </div>
       <a class="footer-contact" href="mailto:info@example.com">info@example.com</a>
     </footer>
+    <script src="meteor-puzzles.js"></script>
     <script src="hallucination-bee.js"></script>
   </body>
 </html>

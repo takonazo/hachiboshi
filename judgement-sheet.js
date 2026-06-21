@@ -70,7 +70,13 @@
   if (answerSelect) {
     answerSelect.addEventListener("change", function () {
       if (answerSelect.value === "この中にはない" && finalModal) {
+        setStatus("", "neutral");
         finalModal.hidden = false;
+        return;
+      }
+
+      if (answerSelect.value) {
+        setStatus("もう一度考えてみましょう。もしもうまくいかない場合は画面右下のヘルプを積極的に活用してみてください。", "error");
       }
     });
   }

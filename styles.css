@@ -343,7 +343,7 @@
 }
 
 .judgement-final-panel {
-  width: min(920px, 100%);
+  width: min(620px, calc(100vw - 48px));
   background: #080b0d;
 }
 

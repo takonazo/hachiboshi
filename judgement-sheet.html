@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>判定結果記入シート | 第七鑑定室</title>
+    <meta name="description" content="第七鑑定室の鑑定結果記入シートです。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="judgement-body">
+    <main class="judgement-page">
+      <header class="judgement-header">
+        <p>第七鑑定室</p>
+        <h1>判定結果記入シート</h1>
+      </header>
+
+      <section class="judgement-layout">
+        <div class="judgement-workspace">
+          <p class="judgement-lead">
+            5種類の粉と4種類の液体を総当たりで混合し、反応結果を記入してください。
+          </p>
+
+          <div class="judgement-grid-wrap" aria-label="判定結果表">
+            <div class="judgement-grid" data-judgement-grid>
+              <div class="judgement-corner" aria-hidden="true"></div>
+              <div class="judgement-col">♢</div>
+              <div class="judgement-col">☆</div>
+              <div class="judgement-col">♡</div>
+              <div class="judgement-col">☀</div>
+              <div class="judgement-col">☾</div>
+
+              <div class="judgement-row">1</div>
+              <button class="judgement-cell" type="button" data-row="0" data-col="0" aria-label="1行1列"></button>
+              <button class="judgement-cell" type="button" data-row="0" data-col="1" aria-label="1行2列"></button>
+              <button class="judgement-cell" type="button" data-row="0" data-col="2" aria-label="1行3列"></button>
+              <button class="judgement-cell" type="button" data-row="0" data-col="3" aria-label="1行4列"></button>
+              <button class="judgement-cell" type="button" data-row="0" data-col="4" aria-label="1行5列"></button>
+
+              <div class="judgement-row">2</div>
+              <button class="judgement-cell" type="button" data-row="1" data-col="0" aria-label="2行1列"></button>
+              <button class="judgement-cell" type="button" data-row="1" data-col="1" aria-label="2行2列"></button>
+              <button class="judgement-cell" type="button" data-row="1" data-col="2" aria-label="2行3列"></button>
+              <button class="judgement-cell" type="button" data-row="1" data-col="3" aria-label="2行4列"></button>
+              <button class="judgement-cell" type="button" data-row="1" data-col="4" aria-label="2行5列"></button>
+
+              <div class="judgement-row">3</div>
+              <button class="judgement-cell" type="button" data-row="2" data-col="0" aria-label="3行1列"></button>
+              <button class="judgement-cell" type="button" data-row="2" data-col="1" aria-label="3行2列"></button>
+              <button class="judgement-cell" type="button" data-row="2" data-col="2" aria-label="3行3列"></button>
+              <button class="judgement-cell" type="button" data-row="2" data-col="3" aria-label="3行4列"></button>
+              <button class="judgement-cell" type="button" data-row="2" data-col="4" aria-label="3行5列"></button>
+
+              <div class="judgement-row">4</div>
+              <button class="judgement-cell" type="button" data-row="3" data-col="0" aria-label="4行1列"></button>
+              <button class="judgement-cell" type="button" data-row="3" data-col="1" aria-label="4行2列"></button>
+              <button class="judgement-cell" type="button" data-row="3" data-col="2" aria-label="4行3列"></button>
+              <button class="judgement-cell" type="button" data-row="3" data-col="3" aria-label="4行4列"></button>
+              <button class="judgement-cell" type="button" data-row="3" data-col="4" aria-label="4行5列"></button>
+            </div>
+          </div>
+
+          <div class="judgement-controls" aria-label="記入ボタン">
+            <button class="judgement-mark-button" type="button" data-mark="o">〇</button>
+            <button class="judgement-mark-button" type="button" data-mark="x">×</button>
+          </div>
+
+          <p class="judgement-status" data-judgement-status aria-live="polite"></p>
+
+          <div class="judgement-conclusion" data-judgement-conclusion hidden>
+            <label>
+              実験の結果から、危険物質Xは
+              <select data-judgement-answer>
+                <option value="">選択してください</option>
+                <option value="ダイヤの粉">ダイヤの粉</option>
+                <option value="星の粉">星の粉</option>
+                <option value="ハートの粉">ハートの粉</option>
+                <option value="太陽の粉">太陽の粉</option>
+                <option value="月の粉">月の粉</option>
+                <option value="１の液体">１の液体</option>
+                <option value="２の液体">２の液体</option>
+                <option value="３の液体">３の液体</option>
+                <option value="４の液体">４の液体</option>
+                <option value="この中にはない">この中にはない</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <aside class="judgement-reference" aria-label="これまでに得た情報">
+          <h2>これまでに得た情報</h2>
+          <img src="assets/judgement-feature-summary.png" alt="危険物質Xの特徴">
+        </aside>
+      </section>
+    </main>
+
+    <button class="judgement-help" type="button" data-help-open>
+      うまく結果が出ない、または今の状況的に実験ができない場合はこちら
+    </button>
+
+    <div class="judgement-modal" data-help-modal hidden>
+      <div class="judgement-modal-backdrop" data-modal-close></div>
+      <div class="judgement-modal-panel" role="dialog" aria-modal="true" aria-labelledby="help-title">
+        <button class="judgement-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+        <h2 id="help-title">斎藤からの共有</h2>
+        <p>先ほどあなたが送ったサンプルを使って、斎藤が同じ実験をしてみたそうなので、その結果を表示することができます。</p>
+        <button class="judgement-show-result" type="button" data-show-saito>表示する</button>
+        <div class="judgement-saito-result" data-saito-result hidden aria-label="斎藤の実験結果">
+          <span>×</span><span>×</span><span>〇</span><span>×</span><span>〇</span>
+          <span>×</span><span>×</span><span>×</span><span>×</span><span>〇</span>
+          <span>〇</span><span>〇</span><span>〇</span><span>〇</span><span>×</span>
+          <span>〇</span><span>〇</span><span>〇</span><span>〇</span><span>×</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="judgement-modal judgement-final-modal" data-final-modal hidden>
+      <div class="judgement-modal-backdrop" data-final-close></div>
+      <div class="judgement-final-panel" role="dialog" aria-modal="true" aria-label="判定結果">
+        <button class="judgement-modal-close" type="button" data-final-close aria-label="閉じる">×</button>
+        <img src="assets/judgement-not-contained.png" alt="危険物質Xはこの中にはない">
+      </div>
+    </div>
+
+    <script src="judgement-sheet.js"></script>
+  </body>
+</html>

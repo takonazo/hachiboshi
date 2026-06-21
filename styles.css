@@ -940,23 +940,30 @@ h3 {
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 6.8%;
-  height: 3.1%;
+  width: 7.6%;
+  height: 3.4%;
   color: #111;
   background: #fff;
   font-size: clamp(10px, 1.7vw, 18px);
   font-weight: 900;
   line-height: 1;
+  transform: translate(-50%, -50%);
 }
 
 .meteor-v-fill-iii {
-  left: 24.1%;
-  top: 38.9%;
+  left: 25.2%;
+  top: 39.6%;
 }
 
 .meteor-v-fill-iv {
-  left: 24.1%;
-  top: 54.5%;
+  left: 25.2%;
+  top: 55.4%;
+}
+
+.meteor-v-fill-crystal {
+  left: 22.9%;
+  top: 71.5%;
+  width: 11%;
 }
 
 .meteor-symbol-lock {

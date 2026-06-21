@@ -158,9 +158,13 @@
   }
 
   function updateMeteorVFill() {
+    const crystalSolved = solved["6-5"].includes("結晶");
     const greenSolved = solved["6-5"].includes("緑");
     const blueSolved = solved["6-5"].includes("青");
 
+    document.querySelectorAll("[data-meteor-v-fill='crystal']").forEach(function (fill) {
+      fill.hidden = !crystalSolved;
+    });
     document.querySelectorAll("[data-meteor-v-fill='6-3']").forEach(function (fill) {
       fill.hidden = !greenSolved;
     });

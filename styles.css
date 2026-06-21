@@ -951,18 +951,24 @@ h3 {
 }
 
 .meteor-v-fill-iii {
-  left: 25.2%;
+  left: 23.5%;
   top: 39.6%;
 }
 
 .meteor-v-fill-iv {
-  left: 25.2%;
+  left: 23.5%;
   top: 55.4%;
 }
 
 .meteor-v-fill-crystal {
-  left: 22.9%;
-  top: 71.5%;
+  left: 19.4%;
+  top: 70.8%;
+  width: 11%;
+}
+
+.meteor-v-fill-crystal-alt {
+  left: 19.4%;
+  top: 87.6%;
   width: 11%;
 }
 
@@ -980,8 +986,8 @@ h3 {
 
 .meteor-symbol-slot {
   display: grid;
-  grid-template-rows: auto 14px auto 14px;
-  gap: 0;
+  grid-template-rows: auto 20px auto 20px;
+  gap: 2px;
   justify-items: center;
 }
 
@@ -1025,7 +1031,7 @@ h3 {
   place-items: center;
   width: 100%;
   aspect-ratio: 1;
-  margin: -4px 0;
+  margin: 0;
   color: #111;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid #17232c;
@@ -2172,7 +2178,7 @@ h3 {
   }
 
   .meteor-symbol-slot {
-    grid-template-rows: auto 11px auto 11px;
+    grid-template-rows: auto 16px auto 16px;
   }
 
   .meteor-symbol-label {
@@ -2180,7 +2186,7 @@ h3 {
   }
 
   .meteor-symbol-slot button {
-    height: 14px;
+    height: 16px;
     font-size: 10px;
   }
 

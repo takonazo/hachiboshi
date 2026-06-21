@@ -217,6 +217,12 @@
   font-size: 18px;
 }
 
+.judgement-reference-reveal {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(32, 51, 73, 0.18);
+}
+
 .judgement-reference img,
 .judgement-final-panel img {
   display: block;

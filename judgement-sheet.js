@@ -1,4 +1,5 @@
 (function () {
+  const finalReferenceKey = "judgementFinalReferenceVisible";
   const correctPatterns = [
     [
       ["x", "x", "o", "x", "o"],
@@ -24,7 +25,12 @@
   const saitoResult = document.querySelector("[data-saito-result]");
   const showSaito = document.querySelector("[data-show-saito]");
   const finalModal = document.querySelector("[data-final-modal]");
+  const finalReference = document.querySelector("[data-final-reference]");
   let selectedCell = null;
+
+  if (localStorage.getItem(finalReferenceKey) === "true") {
+    showFinalReference();
+  }
 
   cells.forEach(function (cell) {
     cell.addEventListener("click", function () {
@@ -71,6 +77,8 @@
     answerSelect.addEventListener("change", function () {
       if (answerSelect.value === "この中にはない" && finalModal) {
         setStatus("", "neutral");
+        localStorage.setItem(finalReferenceKey, "true");
+        showFinalReference();
         finalModal.hidden = false;
         return;
       }
@@ -155,5 +163,11 @@
 
     status.textContent = message;
     status.dataset.type = type;
+  }
+
+  function showFinalReference() {
+    if (finalReference) {
+      finalReference.hidden = false;
+    }
   }
 })();

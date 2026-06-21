@@ -519,7 +519,7 @@ h3 {
 
 .color-lock {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(52px, 1fr));
   gap: 18px;
   margin-top: 30px;
 }
@@ -546,6 +546,7 @@ h3 {
 .color-square {
   width: 100%;
   max-width: 118px;
+  min-width: 0;
   aspect-ratio: 1;
   border: 1px solid #a7b5bf;
   border-radius: 6px;
@@ -1748,7 +1749,22 @@ h3 {
   }
 
   .color-lock {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .color-slot {
+    gap: 7px;
+  }
+
+  .color-slot button {
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+  }
+
+  .color-square {
+    max-width: 76px;
   }
 
   .color-lock-actions {

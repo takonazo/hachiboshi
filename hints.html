@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HACHIBOSHI DATABASE - HINT SYSTEM</title>
+  <meta name="description" content="八星製薬内部データベース - 謎解き支援システム">
+  <link rel="stylesheet" href="hints.css">
+</head>
+<body>
+  
+  <header>
+    <h1 id="system-title" class="system-title">Hachiboshi Hint Decryption System</h1>
+  </header>
+
+  <main id="main-content" class="hud-container">
+    <div class="hud-frame-outer">
+      <div class="hud-frame-inner">
+        <!-- SF Decorative Elements -->
+        <div class="decor-tl-lines" aria-hidden="true"></div>
+        <div class="decor-tr-dots" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="decor-bl-triangle" aria-hidden="true"></div>
+
+        <!-- Hint Card Contents -->
+        <div class="hint-card">
+          <div class="hint-header">
+            <span id="hint-no" class="hint-no">HINT No. --</span>
+            <span id="hint-status" class="hint-status locked">LOCKED</span>
+          </div>
+
+          <div class="hint-title-area">
+            <div class="hint-title-label">Target Subject</div>
+            <h2 id="hint-title" class="hint-title">Loading system database...</h2>
+          </div>
+
+          <div id="hint-body-area" class="hint-body-area">
+            <!-- Dynamic Content will be injected here via hints.js -->
+            <div class="system-message blink">INITIALIZING DATABASE...</div>
+          </div>
+
+          <div class="hud-navigation">
+            <button id="prev-btn" class="nav-btn" aria-label="前のヒントを表示" disabled>
+              <span>◀</span> PREV
+            </button>
+            <span id="nav-counter" class="nav-counter">-- / --</span>
+            <button id="next-btn" class="nav-btn" aria-label="次のヒントを表示" disabled>
+              NEXT <span>▶</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="back-link-container">
+    <a href="index.html" class="back-link" aria-label="八星製薬トップページへ戻る">
+      <span>◀</span> RETURN_TO_TOP
+    </a>
+  </div>
+
+  <script src="hints.js"></script>
+</body>
+</html>

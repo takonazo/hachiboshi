@@ -969,7 +969,7 @@ h3 {
 .meteor-symbol-lock {
   position: absolute;
   left: 53.8%;
-  top: 13.1%;
+  top: 16.4%;
   z-index: 3;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -986,10 +986,10 @@ h3 {
 }
 
 .meteor-symbol-label {
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   color: #111;
   background: rgba(255, 255, 255, 0.9);
-  font-size: clamp(12px, 1.8vw, 18px);
+  font-size: clamp(16px, 2.4vw, 25px);
   font-weight: 900;
   line-height: 1;
 }
@@ -1002,8 +1002,8 @@ h3 {
   min-height: 0;
   padding: 0;
   color: var(--blue-dark);
-  background: transparent;
-  border: 0;
+  background: rgba(234, 244, 251, 0.96);
+  border: 1px solid #8bb9d5;
   border-radius: 4px;
   font: inherit;
   font-size: 12px;
@@ -1014,8 +1014,10 @@ h3 {
 
 .meteor-symbol-lock.is-complete button {
   color: #98a5ad;
+  background: #eef3f6;
+  border-color: #d5e0e6;
   cursor: default;
-  opacity: 0.48;
+  opacity: 0.62;
 }
 
 .meteor-symbol-slot [data-symbol-display] {
@@ -2174,7 +2176,7 @@ h3 {
   }
 
   .meteor-symbol-label {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .meteor-symbol-slot button {

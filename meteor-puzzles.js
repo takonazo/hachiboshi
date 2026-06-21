@@ -147,8 +147,8 @@
   }
 
   function updateMeteorVFill() {
-    const greenSolved = solved["6-3"].includes("緑") || solved["6-5"].includes("緑");
-    const blueSolved = solved["6-4"].includes("青") || solved["6-5"].includes("青");
+    const greenSolved = solved["6-5"].includes("緑");
+    const blueSolved = solved["6-5"].includes("青");
 
     document.querySelectorAll("[data-meteor-v-fill='6-3']").forEach(function (fill) {
       fill.hidden = !greenSolved;

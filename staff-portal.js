@@ -17,25 +17,41 @@
   const notificationButton = document.querySelector("[data-notification-button]");
   const notificationPanel = document.querySelector("[data-notification-panel]");
   const notificationDot = document.querySelector("[data-notification-dot]");
+  const notificationCount = document.querySelector("[data-notification-count]");
   const messageModal = document.querySelector("[data-message-modal]");
   const messageCloseButtons = document.querySelectorAll("[data-close-message]");
   const cipherModal = document.querySelector("[data-cipher-modal]");
   const cipherCloseButtons = document.querySelectorAll("[data-close-cipher]");
   const hallucinationInsect = document.querySelector("[data-hallucination-insect]");
   const currentDateLabels = document.querySelectorAll("[data-current-date]");
+  const materialRevealItems = document.querySelectorAll("[data-material-reveal]");
+  const materialBrokenNotes = document.querySelectorAll("[data-material-broken-note]");
   const notificationStorageKeys = [
     "hachiboshiNotificationsRead",
     "hachiboshiNotificationsReadV2",
     "hachiboshiNotificationsReadV3"
   ];
+  const restorationNotifications = [
+    {
+      unlockKey: "hachiboshiNewMaterialUnlocked",
+      seenKey: "hachiboshiRestorationNoticeNewMaterialSeen"
+    },
+    {
+      unlockKey: "hachiboshiProjectMeteorUnlocked",
+      seenKey: "hachiboshiRestorationNoticeProjectMeteorSeen"
+    }
+  ];
   let hallucinationFrame = null;
   let hallucinationTimeout = null;
+  let pendingRestorationNotifications = [];
 
   if (!form || !loginPanel || !dashboard) {
     return;
   }
 
   setCurrentDateLabels();
+  applyPortalReveals();
+  pendingRestorationNotifications = renderRestorationNotifications();
   window.hachiboshiOpenCipherNotice = showCipherModal;
   window.hachiboshiCloseCipherNotice = hideCipherModal;
 
@@ -76,7 +92,7 @@
   }
 
   if (notificationButton && notificationPanel) {
-    if (readNotificationState() === "true") {
+    if (readNotificationState() === "true" && pendingRestorationNotifications.length === 0) {
       clearNotificationDot();
     }
 
@@ -87,6 +103,7 @@
       notificationButton.setAttribute("aria-expanded", String(opening));
       if (opening) {
         saveNotificationState();
+        saveRestorationNotificationState();
         clearNotificationDot();
       }
     });
@@ -200,6 +217,85 @@
 
   function normalize(value) {
     return String(value).trim().toLowerCase();
+  }
+
+  function isUnlocked(key) {
+    try {
+      return sessionStorage.getItem(key) === "unlocked" || localStorage.getItem(key) === "unlocked";
+    } catch (error) {
+      return sessionStorage.getItem(key) === "unlocked";
+    }
+  }
+
+  function readLocalStorage(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeLocalStorage(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      return;
+    }
+  }
+
+  function applyPortalReveals() {
+    if (!isUnlocked("hachiboshiNewMaterialUnlocked")) {
+      return;
+    }
+
+    materialRevealItems.forEach(function (item) {
+      item.textContent = item.dataset.unlockedText || item.textContent;
+    });
+
+    materialBrokenNotes.forEach(function (note) {
+      note.hidden = true;
+    });
+  }
+
+  function renderRestorationNotifications() {
+    if (!notificationPanel) {
+      return [];
+    }
+
+    const unlocked = restorationNotifications.filter(function (notice) {
+      return isUnlocked(notice.unlockKey);
+    });
+    const pending = unlocked.filter(function (notice) {
+      return readLocalStorage(notice.seenKey) !== "true";
+    });
+    const anchor = notificationPanel.querySelector(".notification-panel-header");
+
+    unlocked.forEach(function () {
+      const item = document.createElement("button");
+      item.className = "notification-item";
+      item.type = "button";
+      item.innerHTML = "<strong>ITチーム</strong><span>社員ポータル内の一部伏字が復元されました</span>";
+      notificationPanel.insertBefore(item, anchor ? anchor.nextSibling : notificationPanel.firstChild);
+    });
+
+    updateNotificationCount();
+    return pending;
+  }
+
+  function saveRestorationNotificationState() {
+    pendingRestorationNotifications.forEach(function (notice) {
+      writeLocalStorage(notice.seenKey, "true");
+    });
+    pendingRestorationNotifications = [];
+  }
+
+  function updateNotificationCount() {
+    if (!notificationCount || !notificationPanel) {
+      return;
+    }
+
+    const count = notificationPanel.querySelectorAll(".notification-item").length;
+    notificationCount.textContent = `${count}件`;
   }
 
   function setCurrentDateLabels() {

@@ -16,7 +16,10 @@
     return;
   }
 
-  if (storageKey && sessionStorage.getItem(storageKey) === "unlocked") {
+  revealUnlockedText();
+
+  if (storageKey && isUnlocked(storageKey)) {
+    persistUnlock(storageKey);
     unlock();
   }
 
@@ -24,8 +27,12 @@
     event.preventDefault();
 
     if (normalize(input.value) === normalize(password)) {
+      const alreadyUnlocked = storageKey ? isUnlocked(storageKey) : false;
       if (storageKey) {
-        sessionStorage.setItem(storageKey, "unlocked");
+        persistUnlock(storageKey);
+        if (!alreadyUnlocked) {
+          queueRestorationNotification(storageKey);
+        }
       }
       unlock();
       return;
@@ -46,5 +53,48 @@
 
   function normalize(value) {
     return String(value).replace(/[　\s]+/g, " ").trim().toLowerCase();
+  }
+
+  function isUnlocked(key) {
+    try {
+      return sessionStorage.getItem(key) === "unlocked" || localStorage.getItem(key) === "unlocked";
+    } catch (error) {
+      return sessionStorage.getItem(key) === "unlocked";
+    }
+  }
+
+  function persistUnlock(key) {
+    try {
+      sessionStorage.setItem(key, "unlocked");
+      localStorage.setItem(key, "unlocked");
+    } catch (error) {
+      sessionStorage.setItem(key, "unlocked");
+    }
+  }
+
+  function revealUnlockedText() {
+    document.querySelectorAll("[data-reveal-key][data-reveal-text]").forEach(function (element) {
+      if (isUnlocked(element.dataset.revealKey || "")) {
+        element.textContent = element.dataset.revealText || "";
+      }
+    });
+  }
+
+  function queueRestorationNotification(key) {
+    const seenKeys = {
+      hachiboshiNewMaterialUnlocked: "hachiboshiRestorationNoticeNewMaterialSeen",
+      hachiboshiProjectMeteorUnlocked: "hachiboshiRestorationNoticeProjectMeteorSeen"
+    };
+    const seenKey = seenKeys[key];
+
+    if (!seenKey) {
+      return;
+    }
+
+    try {
+      localStorage.removeItem(seenKey);
+    } catch (error) {
+      return;
+    }
   }
 })();

@@ -74,7 +74,7 @@
               <div class="notification-panel" data-notification-panel hidden>
                 <div class="notification-panel-header">
                   <h3>通知</h3>
-                  <span>5件</span>
+                  <span data-notification-count>5件</span>
                 </div>
                 <button class="notification-item" type="button">
                   <strong>北村部長</strong>
@@ -188,17 +188,17 @@
         
         <p class="portal-notice-heading">以下のいずれかの部分を読む。</p>
         <ul class="portal-notice-steps">
-          <li>赤い██の中</li>
-          <li>青い██の中</li>
+          <li data-material-reveal data-unlocked-text="赤い”はち”の中">赤い██の中</li>
+          <li data-material-reveal data-unlocked-text="青い”はこ”の中">青い██の中</li>
         </ul>
         <p>
           ※一部、タコのマークのある資料に関しては、解読したい部分と同じ色のタコのマークが右上に書かれた謎を参照してください。
         </p>
-        <p class="portal-notice-update">
+        <p class="portal-notice-update" data-material-broken-note>
           ※<span data-current-date>本日</span>追記 現在、社員ポータル上において、上記の暗号解読手順を含む一部のデータが破損し、閲覧できない状態となっています。現在ITチームが対応中です。
         </p>
       </section>
     </div>
-    <script src="staff-portal.js?v=20260620-cipher"></script>
+    <script src="staff-portal.js?v=20260621-redaction"></script>
   </body>
 </html>

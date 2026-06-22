@@ -2058,6 +2058,20 @@ h3 {
   background: #fff;
 }
 
+.portal-password-hint {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-password-star {
+  color: #ad5bea;
+  font-size: 44px;
+  line-height: 1;
+  text-shadow: 0 0 18px rgba(173, 91, 234, 0.2);
+}
+
 .portal-card h1,
 .portal-secure-document h1 {
   margin: 0;
@@ -2126,6 +2140,11 @@ h3 {
   background: #02070b;
   border-radius: 2px;
   user-select: none;
+}
+
+.secure-red-text {
+  color: #ff5d5d;
+  font-weight: 900;
 }
 
 .antidote-card {

@@ -2049,6 +2049,15 @@ h3 {
   width: min(620px, 100%);
 }
 
+.portal-lock-puzzle {
+  display: block;
+  width: min(100%, 520px);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: #fff;
+}
+
 .portal-card h1,
 .portal-secure-document h1 {
   margin: 0;

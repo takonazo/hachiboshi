@@ -14,6 +14,7 @@
   const message = document.querySelector("[data-color-message]");
   const content = document.querySelector("[data-newsletter-content]");
   const gate = document.querySelector("[data-color-gate]");
+  const powderPasswordHint = document.querySelector("[data-powder-password-hint]");
   const powderPuzzleImage = document.querySelector("[data-powder-puzzle-image]");
   const powderPuzzleHotspots = document.querySelector("[data-powder-puzzle-hotspots]");
   const storageKey = "hachiboshiNewsletterJuneUnlocked";
@@ -96,6 +97,9 @@
   function revealPowderPuzzle() {
     powderPuzzleImage.src = "assets/powder-puzzle-grid.png";
     powderPuzzleImage.alt = "暗号解読用の記入欄";
+    if (powderPasswordHint) {
+      powderPasswordHint.hidden = true;
+    }
     if (powderPuzzleHotspots) {
       powderPuzzleHotspots.hidden = true;
     }

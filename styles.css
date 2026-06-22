@@ -980,6 +980,24 @@ h3 {
   box-shadow: 0 12px 34px rgba(10, 53, 98, 0.1);
 }
 
+.powder-password-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--blue-dark);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.powder-password-hint img {
+  width: 52px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .powder-puzzle-stage {
   position: relative;
   width: min(720px, 100%);

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>クリア判定 | 第七鑑定室</title>
+    <meta name="description" content="解毒薬調合後のクリア判定ページです。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="clear-body">
+    <main class="clear-page">
+      <section class="clear-panel">
+        <p class="clear-label">Final Check</p>
+        <h1>クリア判定</h1>
+
+        <form class="clear-form" data-clear-form>
+          <fieldset class="clear-question">
+            <legend>Q1. 解毒薬の調合方法は？</legend>
+            <div class="clear-formula" aria-label="解毒薬の調合方法">
+              <p>
+                「<input data-clear-input="liquid-a" type="text" inputmode="text" autocomplete="off">」
+                と
+                「<input data-clear-input="liquid-b" type="text" inputmode="text" autocomplete="off">」
+                の
+                「<input data-clear-input="target" type="text" inputmode="text" autocomplete="off">」
+              </p>
+              <p>
+                「<input data-clear-input="ratio" type="text" inputmode="text" autocomplete="off" placeholder="1:1">」
+                で
+                「<input data-clear-input="action" type="text" inputmode="text" autocomplete="off">」
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset class="clear-question">
+            <legend>Q2. 混ぜた液体はどうなった？</legend>
+            <select data-clear-select>
+              <option value="">選択してください</option>
+              <option value="濁った">濁った</option>
+              <option value="赤くなった">赤くなった</option>
+              <option value="粉が沈んだ">粉が沈んだ</option>
+              <option value="光った">光った</option>
+              <option value="煙が出た">煙が出た</option>
+              <option value="熱くなった">熱くなった</option>
+            </select>
+          </fieldset>
+
+          <button class="clear-submit" type="submit">判定する</button>
+          <p class="clear-message" data-clear-message aria-live="polite"></p>
+        </form>
+
+        <div class="clear-result" data-clear-result hidden>
+          <img src="assets/clear-message.png" alt="解毒薬を手に入れたと斎藤に送ろう">
+        </div>
+      </section>
+    </main>
+
+    <script src="clear-check.js"></script>
+  </body>
+</html>

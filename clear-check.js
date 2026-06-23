@@ -8,6 +8,9 @@
     return;
   }
 
+  resetForm();
+  window.addEventListener("pageshow", resetForm);
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -61,5 +64,14 @@
 
     message.textContent = text;
     message.classList.toggle("success", isSuccess);
+  }
+
+  function resetForm() {
+    form.querySelectorAll("[data-clear-input]").forEach(function (input) {
+      input.value = "";
+    });
+    select.value = "";
+    result.hidden = true;
+    setMessage("", false);
   }
 })();

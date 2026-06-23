@@ -449,6 +449,11 @@
   text-align: center;
 }
 
+.clear-formula input::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
 .clear-formula input[data-clear-input="target"],
 .clear-formula input[data-clear-input="action"] {
   width: 6.8em;

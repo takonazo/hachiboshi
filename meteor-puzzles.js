@@ -13,12 +13,12 @@
       { canonical: "緑", aliases: ["GREEN", "グリーン", "ぐりーん", "みどり", "緑", "ミドリ", "green", "Green"] }
     ],
     "6-4": [
-      { canonical: "青", aliases: ["BLUE", "Blue", "blue", "あお", "アオ", "青"] }
+      { canonical: "青", aliases: ["BLUE", "Blue", "blue", "あお", "アオ", "青", "ブルー"] }
     ],
     "6-5": [
       { canonical: "結晶", aliases: ["結晶", "けっしょう"] },
       { canonical: "緑", aliases: ["GREEN", "グリーン", "ぐりーん", "みどり", "緑", "ミドリ", "green", "Green"] },
-      { canonical: "青", aliases: ["BLUE", "Blue", "blue", "あお", "アオ", "青"] }
+      { canonical: "青", aliases: ["BLUE", "Blue", "blue", "あお", "アオ", "青", "ブルー"] }
     ],
     "6-7": [
       { canonical: "実験", aliases: ["実験", "じっけん"] }

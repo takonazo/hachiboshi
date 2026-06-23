@@ -2028,12 +2028,20 @@ h3 {
 }
 
 .portal-help p {
-  margin: 8px 0 0;
-  padding: 10px 12px;
-  color: #a9bac7;
-  background: rgba(3, 12, 19, 0.42);
-  border: 1px solid rgba(127, 185, 221, 0.16);
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  color: #d8e6ef;
+  background: rgba(127, 185, 221, 0.08);
+  border-left: 3px solid #7fb9dd;
   border-radius: 4px;
+}
+
+.portal-help p span {
+  color: #7fb9dd;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .portal-dashboard {
@@ -2574,12 +2582,16 @@ h3 {
   position: relative;
   z-index: 1;
   width: min(620px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 30px;
   color: #d8e6ef;
   background: #0d1d29;
   border: 1px solid rgba(127, 185, 221, 0.28);
   border-radius: 8px;
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.44);
+  -webkit-overflow-scrolling: touch;
 }
 
 .portal-message-dialog h2 {

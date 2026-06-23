@@ -1549,6 +1549,13 @@ h3 {
   border-radius: 6px;
 }
 
+.meteor-puzzle-note {
+  margin: 10px 0 0;
+  color: #8b2f2f;
+  font-size: 15px;
+  font-weight: 900;
+}
+
 .meteor-answer-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

@@ -9,6 +9,7 @@
   const input = gate.querySelector("[data-password-input]");
   const error = gate.querySelector("[data-password-error]");
   const content = gate.querySelector("[data-locked-content]");
+  const failedHint = gate.querySelector("[data-password-failed-text]");
   const passwords = (gate.dataset.password || "").split("|").map(normalize).filter(Boolean);
   const storageKey = gate.dataset.sessionKey || "";
 
@@ -40,6 +41,9 @@
 
     if (error) {
       error.hidden = false;
+    }
+    if (failedHint) {
+      failedHint.textContent = failedHint.dataset.passwordFailedText || "";
     }
   });
 

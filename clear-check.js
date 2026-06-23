@@ -2,7 +2,11 @@
   const form = document.querySelector("[data-clear-form]");
   const message = document.querySelector("[data-clear-message]");
   const result = document.querySelector("[data-clear-result]");
+  const copyButton = document.querySelector("[data-clear-copy]");
+  const copyToast = document.querySelector("[data-clear-copy-toast]");
   const select = document.querySelector("[data-clear-select]");
+  const copyText = "解毒薬を手に入れた";
+  let toastTimer = null;
 
   if (!form || !select || !result) {
     return;
@@ -39,6 +43,7 @@
 
     setMessage("入力内容を確認してください。", false);
     result.hidden = true;
+    hideCopyToast();
   });
 
   function getValue(name) {
@@ -73,5 +78,81 @@
     select.value = "";
     result.hidden = true;
     setMessage("", false);
+    hideCopyToast();
+  }
+
+  if (copyButton) {
+    copyButton.addEventListener("click", async function () {
+      const copied = await copyToClipboard(copyText);
+      if (copied) {
+        showCopyToast("コピーしました", true, 1800);
+        return;
+      }
+
+      showCopyToast("コピーが正常にできませんでした。お手数ですが手動でLINEにご入力ください", false, 6500);
+    });
+  }
+
+  async function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (error) {
+        return fallbackCopy(text);
+      }
+    }
+
+    return fallbackCopy(text);
+  }
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-1000px";
+    textarea.style.left = "-1000px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } catch (error) {
+      copied = false;
+    }
+
+    textarea.remove();
+    return copied;
+  }
+
+  function showCopyToast(text, isSuccess, duration) {
+    if (!copyToast) {
+      return;
+    }
+
+    window.clearTimeout(toastTimer);
+    copyToast.textContent = text;
+    copyToast.hidden = false;
+    copyToast.classList.toggle("is-error", !isSuccess);
+
+    toastTimer = window.setTimeout(function () {
+      copyToast.hidden = true;
+      copyToast.textContent = "";
+      copyToast.classList.remove("is-error");
+    }, duration);
+  }
+
+  function hideCopyToast() {
+    if (!copyToast) {
+      return;
+    }
+
+    window.clearTimeout(toastTimer);
+    copyToast.hidden = true;
+    copyToast.textContent = "";
+    copyToast.classList.remove("is-error");
   }
 })();

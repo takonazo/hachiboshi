@@ -1556,13 +1556,6 @@ h3 {
   font-weight: 900;
 }
 
-.meteor-answer-requirement {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 900;
-}
-
 .meteor-answer-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

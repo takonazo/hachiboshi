@@ -131,7 +131,7 @@
       return;
     }
 
-    element.textContent = `正解：${solved[id].join("、")}`;
+    element.textContent = `正解（${solved[id].length}/${puzzles[id].length}）：${solved[id].join("、")}`;
   }
 
   function setMessage(element, text, success) {

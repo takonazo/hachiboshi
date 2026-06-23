@@ -2131,6 +2131,21 @@ h3 {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.26);
 }
 
+.portal-bell.has-unread {
+  color: #fff;
+  background: radial-gradient(circle at 36% 28%, #2f5a73, #143247 68%);
+  border-color: rgba(255, 209, 138, 0.88);
+  box-shadow:
+    0 0 0 4px rgba(255, 209, 138, 0.12),
+    0 0 26px rgba(255, 209, 138, 0.34),
+    0 16px 38px rgba(0, 0, 0, 0.32);
+  animation: portalNotificationPulse 2.2s ease-in-out infinite;
+}
+
+.portal-bell.has-unread .bell-pictogram {
+  animation: portalBellNudge 2.2s ease-in-out infinite;
+}
+
 .portal-bell:hover,
 .portal-bell:focus-visible {
   background: #18374b;
@@ -2146,13 +2161,85 @@ h3 {
 
 .notification-dot {
   position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 11px;
-  height: 11px;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
   background: #ffd18a;
   border: 2px solid #101d28;
   border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 209, 138, 0.14);
+}
+
+.notification-attention {
+  position: absolute;
+  top: -12px;
+  right: -14px;
+  display: none;
+  padding: 3px 8px;
+  color: #101d28;
+  background: #ffd18a;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.portal-bell.has-unread .notification-attention {
+  display: block;
+}
+
+@keyframes portalNotificationPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow:
+      0 0 0 4px rgba(255, 209, 138, 0.12),
+      0 0 26px rgba(255, 209, 138, 0.34),
+      0 16px 38px rgba(0, 0, 0, 0.32);
+  }
+
+  50% {
+    transform: translateY(-1px);
+    box-shadow:
+      0 0 0 7px rgba(255, 209, 138, 0.07),
+      0 0 34px rgba(255, 209, 138, 0.46),
+      0 18px 42px rgba(0, 0, 0, 0.36);
+  }
+}
+
+@keyframes portalBellNudge {
+  0%,
+  76%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  80% {
+    transform: rotate(-9deg);
+  }
+
+  84% {
+    transform: rotate(8deg);
+  }
+
+  88% {
+    transform: rotate(-5deg);
+  }
+
+  92% {
+    transform: rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-bell.has-unread,
+  .portal-bell.has-unread .bell-pictogram {
+    animation: none;
+  }
 }
 
 .notification-panel {
@@ -2906,6 +2993,13 @@ h3 {
   .portal-bell {
     width: 44px;
     height: 44px;
+  }
+
+  .notification-attention {
+    top: -10px;
+    right: -10px;
+    padding: 3px 7px;
+    font-size: 10px;
   }
 
   .notification-panel {

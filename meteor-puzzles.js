@@ -149,6 +149,9 @@
 
   function completeForm(form, input) {
     const button = form.querySelector("button");
+    if (document.activeElement && form.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
     input.value = "完了";
     input.disabled = true;
     if (button) {
@@ -191,7 +194,6 @@
         final.hidden = false;
         window.requestAnimationFrame(function () {
           final.classList.add("is-visible");
-          final.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
     }, 1200);

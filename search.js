@@ -33,6 +33,8 @@
   const query = params.get("q") || "";
   const input = document.querySelector("[data-search-input]");
   const output = document.querySelector("[data-search-results]");
+  const historyOutput = document.querySelector("[data-search-history]");
+  const historyKey = "hachiboshiSearchHistory";
 
   if (input) {
     input.value = query;
@@ -45,18 +47,26 @@
   const normalizedQuery = normalize(query);
   if (!normalizedQuery) {
     output.innerHTML = "<p>キーワードを入力して検索してください。</p>";
+    renderHistory();
     return;
   }
 
   const hiddenMatched = hiddenTerms.some((term) => normalize(term) === normalizedQuery);
+  let hitCount = 0;
+  let resultHtml = "";
+
   if (hiddenMatched) {
-    output.innerHTML = [
+    hitCount = 1;
+    resultHtml = [
       "<p class=\"result-count\">1件見つかりました。</p>",
       "<a class=\"result-item\" href=\"archive-room.html\">",
       "<strong>資料閲覧室</strong>",
       "<span>標章確認に関する補足資料を表示します。</span>",
       "</a>"
     ].join("");
+    output.innerHTML = resultHtml;
+    saveHistory(query, hitCount);
+    renderHistory();
     return;
   }
 
@@ -66,10 +76,13 @@
 
   if (!results.length) {
     output.innerHTML = "<p>該当する公開ページは見つかりませんでした。</p>";
+    saveHistory(query, hitCount);
+    renderHistory();
     return;
   }
 
-  output.innerHTML = [
+  hitCount = results.length;
+  resultHtml = [
     `<p class="result-count">${results.length}件見つかりました。</p>`,
     ...results.map((page) => {
       return [
@@ -80,8 +93,88 @@
       ].join("");
     })
   ].join("");
+  output.innerHTML = resultHtml;
+  saveHistory(query, hitCount);
+  renderHistory();
 
   function normalize(value) {
-    return value.replace(/[　\s]+/g, " ").trim().toLowerCase();
+    return String(value).replace(/[　\s]+/g, " ").trim().toLowerCase();
+  }
+
+  function saveHistory(term, count) {
+    const word = String(term).replace(/[　\s]+/g, " ").trim();
+    if (!word) {
+      return;
+    }
+
+    const normalizedWord = normalize(word);
+    const history = readHistory().filter((item) => normalize(item.word) !== normalizedWord);
+    history.unshift({
+      word,
+      count,
+      searchedAt: Date.now()
+    });
+    writeHistory(history.slice(0, 8));
+  }
+
+  function renderHistory() {
+    if (!historyOutput) {
+      return;
+    }
+
+    const history = readHistory();
+    if (!history.length) {
+      historyOutput.innerHTML = [
+        "<h2>検索履歴</h2>",
+        "<p>検索履歴はまだありません。</p>"
+      ].join("");
+      return;
+    }
+
+    historyOutput.innerHTML = [
+      "<h2>検索履歴</h2>",
+      "<div class=\"search-history-list\">",
+      ...history.map((item) => {
+        const word = escapeHtml(item.word);
+        const href = `search.html?q=${encodeURIComponent(item.word)}`;
+        return [
+          `<a class="search-history-item" href="${href}">`,
+          `<span>${word}</span>`,
+          `<strong>${Number(item.count) || 0}件</strong>`,
+          "</a>"
+        ].join("");
+      }),
+      "</div>"
+    ].join("");
+  }
+
+  function readHistory() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      return Array.isArray(parsed) ? parsed.filter((item) => item && item.word) : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function writeHistory(history) {
+    try {
+      localStorage.setItem(historyKey, JSON.stringify(history));
+    } catch (error) {
+      return;
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (character) => {
+      const entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      };
+      return entities[character] || character;
+    });
   }
 })();

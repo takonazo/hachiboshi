@@ -32,22 +32,38 @@
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q") || "";
   const input = document.querySelector("[data-search-input]");
+  const headerInput = document.querySelector(".header-search input[name='q']");
   const output = document.querySelector("[data-search-results]");
+  const summary = document.querySelector("[data-search-summary]");
   const historyOutput = document.querySelector("[data-search-history]");
   const historyKey = "hachiboshiSearchHistory";
 
   if (input) {
     input.value = query;
   }
+  if (headerInput) {
+    headerInput.value = query;
+    headerInput.addEventListener("focus", showHistory);
+    headerInput.addEventListener("click", showHistory);
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!historyOutput || event.target.closest(".header-search")) {
+      return;
+    }
+    historyOutput.hidden = true;
+  });
 
   if (!output) {
     return;
   }
 
+  renderHistory();
+
   const normalizedQuery = normalize(query);
   if (!normalizedQuery) {
-    output.innerHTML = "<p>キーワードを入力して検索してください。</p>";
-    renderHistory();
+    setSummary("キーワードを入力して検索してください。", "neutral");
+    output.innerHTML = "";
     return;
   }
 
@@ -58,7 +74,6 @@
   if (hiddenMatched) {
     hitCount = 1;
     resultHtml = [
-      "<p class=\"result-count\">1件見つかりました。</p>",
       "<a class=\"result-item\" href=\"archive-room.html\">",
       "<strong>資料閲覧室</strong>",
       "<span>標章確認に関する補足資料を表示します。</span>",
@@ -67,6 +82,7 @@
     output.innerHTML = resultHtml;
     saveHistory(query, hitCount);
     renderHistory();
+    setSummary("1件見つかりました。", "success");
     return;
   }
 
@@ -75,15 +91,14 @@
   });
 
   if (!results.length) {
-    output.innerHTML = "<p>該当する公開ページは見つかりませんでした。</p>";
-    saveHistory(query, hitCount);
+    output.innerHTML = "";
     renderHistory();
+    setSummary("該当する公開ページは見つかりませんでした。", "miss");
     return;
   }
 
   hitCount = results.length;
   resultHtml = [
-    `<p class="result-count">${results.length}件見つかりました。</p>`,
     ...results.map((page) => {
       return [
         `<a class="result-item" href="${page.url}">`,
@@ -96,6 +111,7 @@
   output.innerHTML = resultHtml;
   saveHistory(query, hitCount);
   renderHistory();
+  setSummary(`${results.length}件見つかりました。`, "success");
 
   function normalize(value) {
     return String(value).replace(/[　\s]+/g, " ").trim().toLowerCase();
@@ -103,7 +119,7 @@
 
   function saveHistory(term, count) {
     const word = String(term).replace(/[　\s]+/g, " ").trim();
-    if (!word) {
+    if (!word || count <= 0) {
       return;
     }
 
@@ -125,14 +141,12 @@
     const history = readHistory();
     if (!history.length) {
       historyOutput.innerHTML = [
-        "<h2>検索履歴</h2>",
         "<p>検索履歴はまだありません。</p>"
       ].join("");
       return;
     }
 
     historyOutput.innerHTML = [
-      "<h2>検索履歴</h2>",
       "<div class=\"search-history-list\">",
       ...history.map((item) => {
         const word = escapeHtml(item.word);
@@ -151,7 +165,7 @@
   function readHistory() {
     try {
       const parsed = JSON.parse(localStorage.getItem(historyKey) || "[]");
-      return Array.isArray(parsed) ? parsed.filter((item) => item && item.word) : [];
+      return Array.isArray(parsed) ? parsed.filter((item) => item && item.word && Number(item.count) > 0) : [];
     } catch (error) {
       return [];
     }
@@ -176,5 +190,23 @@
       };
       return entities[character] || character;
     });
+  }
+
+  function setSummary(text, type) {
+    if (!summary) {
+      return;
+    }
+
+    summary.textContent = text;
+    summary.dataset.type = type;
+  }
+
+  function showHistory() {
+    if (!historyOutput) {
+      return;
+    }
+
+    renderHistory();
+    historyOutput.hidden = false;
   }
 })();

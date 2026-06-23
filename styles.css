@@ -1765,6 +1765,10 @@ h3 {
   color: #fff;
 }
 
+.meteor-hero h1 {
+  margin-bottom: 0;
+}
+
 .meteor-panel {
   max-width: 980px;
 }

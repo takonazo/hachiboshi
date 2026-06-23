@@ -1779,6 +1779,32 @@ h3 {
   font-size: 17px;
 }
 
+.meteor-instruction {
+  display: grid;
+  gap: 8px;
+  max-width: 900px;
+  margin-top: 18px;
+  padding: 20px 22px;
+  color: #1e303a;
+  background: #fff;
+  border: 1px solid #cfe2ef;
+  border-left: 5px solid var(--blue);
+  border-radius: 6px;
+  box-shadow: 0 14px 36px rgba(10, 53, 98, 0.08);
+}
+
+.meteor-instruction p {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.75;
+}
+
+.meteor-instruction strong {
+  color: var(--blue-dark);
+  font-weight: 900;
+}
+
 .meteor-puzzle-list {
   display: grid;
   gap: 34px;

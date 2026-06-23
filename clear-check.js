@@ -5,7 +5,24 @@
   const copyButton = document.querySelector("[data-clear-copy]");
   const copyToast = document.querySelector("[data-clear-copy-toast]");
   const select = document.querySelector("[data-clear-select]");
+  const helpOpenButton = document.querySelector("[data-clear-help-open]");
+  const helpModal = document.querySelector("[data-clear-help-modal]");
+  const helpCloseButtons = document.querySelectorAll("[data-clear-help-close]");
+  const helpToggleButtons = document.querySelectorAll("[data-clear-help-toggle]");
+  const helpShowButtons = document.querySelectorAll("[data-clear-help-show]");
   const copyText = "解毒薬を手に入れた";
+  const helpReveals = {
+    vii: {
+      caption: "Ⅵの紙を水に浸けると、文字が浮かび上がってきた！",
+      src: "assets/clear-help-vii.png",
+      alt: "水に浸けた紙に解毒薬の調合手順が浮かび上がっている"
+    },
+    vi: {
+      caption: "調合手順に従うと、画像のようになった！",
+      src: "assets/clear-help-vi.png",
+      alt: "青く光る液体が入った試験管"
+    }
+  };
   let toastTimer = null;
 
   if (!form || !select || !result) {
@@ -31,7 +48,7 @@
       answers.liquidB === "4" &&
       answers.target === "液体" &&
       answers.ratio === "1:1" &&
-      answers.action === "混ぜろ";
+      ["混ぜろ", "混ぜる", "まぜろ", "まぜる"].includes(answers.action);
     const q2Correct = select.value === "光った";
 
     if (q1Correct && q2Correct) {
@@ -92,6 +109,42 @@
       showCopyToast("コピーが正常にできませんでした。お手数ですが手動でLINEにご入力ください", false, 6500);
     });
   }
+
+  if (helpOpenButton && helpModal) {
+    helpOpenButton.addEventListener("click", function () {
+      helpModal.hidden = false;
+    });
+  }
+
+  helpCloseButtons.forEach(function (button) {
+    button.addEventListener("click", closeHelpModal);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeHelpModal();
+    }
+  });
+
+  helpToggleButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const key = button.dataset.clearHelpToggle;
+      const detail = document.querySelector(`[data-clear-help-detail="${key}"]`);
+      if (!detail) {
+        return;
+      }
+
+      const opening = detail.hidden;
+      detail.hidden = !opening;
+      button.setAttribute("aria-expanded", String(opening));
+    });
+  });
+
+  helpShowButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      revealHelpImage(button.dataset.clearHelpShow);
+    });
+  });
 
   async function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
@@ -154,5 +207,24 @@
     copyToast.hidden = true;
     copyToast.textContent = "";
     copyToast.classList.remove("is-error");
+  }
+
+  function closeHelpModal() {
+    if (helpModal) {
+      helpModal.hidden = true;
+    }
+  }
+
+  function revealHelpImage(key) {
+    const reveal = helpReveals[key];
+    const detail = document.querySelector(`[data-clear-help-detail="${key}"]`);
+    if (!reveal || !detail) {
+      return;
+    }
+
+    detail.innerHTML = [
+      `<p class="clear-help-caption">${reveal.caption}</p>`,
+      `<img class="clear-help-image" src="${reveal.src}" alt="${reveal.alt}">`
+    ].join("");
   }
 })();

@@ -46,6 +46,7 @@
           </fieldset>
 
           <button class="clear-submit" type="submit">判定する</button>
+          <button class="clear-experiment-help-link" type="button" data-clear-help-open>現在実験を行えない場合はこちら</button>
           <p class="clear-message" data-clear-message aria-live="polite"></p>
         </form>
 
@@ -58,6 +59,35 @@
         </div>
       </section>
     </main>
+
+    <div class="clear-help-overlay" data-clear-help-modal hidden>
+      <button class="clear-help-backdrop" type="button" data-clear-help-close aria-label="ヘルプを閉じる"></button>
+      <section class="clear-help-dialog" role="dialog" aria-modal="true" aria-labelledby="clear-help-title">
+        <button class="clear-help-close" type="button" data-clear-help-close aria-label="閉じる">×</button>
+        <p class="clear-label">Experiment Help</p>
+        <h2 id="clear-help-title">実験を行えない場合</h2>
+        <p>現在実際に実験を行うことができない場合は、以下のヘルプをご活用ください。</p>
+        <p class="clear-help-warning">※警告：この先、重大なネタバレが含まれます。謎が解けない場合はLINEよりヒント機能をご活用ください</p>
+
+        <div class="clear-help-options">
+          <section class="clear-help-option">
+            <button class="clear-help-toggle" type="button" data-clear-help-toggle="vii" aria-expanded="false">Ⅶの指示が実行できない</button>
+            <div class="clear-help-detail" data-clear-help-detail="vii" hidden>
+              <p>実際には実験を行ったとし、その結果のイメージだけ表示することができます。重大なネタバレとなりますのでご注意ください。</p>
+              <button class="clear-help-show" type="button" data-clear-help-show="vii">表示する</button>
+            </div>
+          </section>
+
+          <section class="clear-help-option">
+            <button class="clear-help-toggle" type="button" data-clear-help-toggle="vi" aria-expanded="false">Ⅵの指示が実行できない</button>
+            <div class="clear-help-detail" data-clear-help-detail="vi" hidden>
+              <p>実際には実験を行ったとし、その結果のイメージだけ表示することができます。重大なネタバレとなりますのでご注意ください。</p>
+              <button class="clear-help-show" type="button" data-clear-help-show="vi">表示する</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
 
     <script src="clear-check.js"></script>
   </body>

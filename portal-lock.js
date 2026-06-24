@@ -12,6 +12,9 @@
   const failedHint = gate.querySelector("[data-password-failed-text]");
   const passwords = (gate.dataset.password || "").split("|").map(normalize).filter(Boolean);
   const storageKey = gate.dataset.sessionKey || "";
+  const defaultErrorText = error ? error.textContent : "";
+  const specialErrorValue = normalize(gate.dataset.specialErrorValue || "");
+  const specialErrorMessage = gate.dataset.specialErrorMessage || defaultErrorText;
 
   if (!form || !input || !content) {
     return;
@@ -27,7 +30,9 @@
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    if (passwords.includes(normalize(input.value))) {
+    const submittedPassword = normalize(input.value);
+
+    if (passwords.includes(submittedPassword)) {
       const alreadyUnlocked = storageKey ? isUnlocked(storageKey) : false;
       if (storageKey) {
         persistUnlock(storageKey);
@@ -40,6 +45,9 @@
     }
 
     if (error) {
+      error.textContent = specialErrorValue && submittedPassword === specialErrorValue
+        ? specialErrorMessage
+        : defaultErrorText;
       error.hidden = false;
     }
     if (failedHint) {

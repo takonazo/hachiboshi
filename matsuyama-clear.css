@@ -748,8 +748,12 @@ svg {
 .certificate__heading {
   position: relative;
   z-index: 1;
-  margin-bottom: 54px;
+  margin-bottom: 30px;
   text-align: center;
+}
+
+.certificate__heading .section-kicker {
+  margin-bottom: 0;
 }
 
 .section-kicker--center {

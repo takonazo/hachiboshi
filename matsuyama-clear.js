@@ -13,10 +13,12 @@
   const lineShareLink = document.querySelector("[data-share-line]");
   const copyShareButton = document.querySelector("[data-copy-share]");
   const downloadButton = document.querySelector("[data-download-card]");
+  const saveLabel = document.querySelector("[data-save-label]");
   const toast = document.querySelector("[data-toast]");
   const goldenTurtleImage = new Image();
   goldenTurtleImage.decoding = "async";
   goldenTurtleImage.src = "assets/matsuyama-clear/golden-turtle.png";
+  let clearCardFile = null;
   let toastTimer = 0;
 
   const record = loadOrCreateRecord();
@@ -37,22 +39,42 @@
   }
 
   if (downloadButton) {
-    downloadButton.addEventListener("click", function () {
+    prepareClearCardFile(record, goldenTurtleImage).then(function (file) {
+      clearCardFile = file;
+      if (saveLabel && !canShareFile(file)) {
+        saveLabel.textContent = "クリア画像を保存";
+      }
+      downloadButton.disabled = false;
+      downloadButton.removeAttribute("aria-busy");
+    }).catch(function () {
+      downloadButton.disabled = true;
+      downloadButton.removeAttribute("aria-busy");
+      if (saveLabel) {
+        saveLabel.textContent = "画像を準備できませんでした";
+      }
+    });
+
+    downloadButton.addEventListener("click", async function () {
+      if (!clearCardFile) {
+        return;
+      }
+
       downloadButton.disabled = true;
       downloadButton.setAttribute("aria-busy", "true");
 
-      window.setTimeout(async function () {
-        try {
-          await ensureImageLoaded(goldenTurtleImage);
-          downloadClearCard(record, goldenTurtleImage);
-          showToast("クリア証の画像を保存しました");
-        } catch (error) {
-          showToast("画像を作成できませんでした。スクリーンショットで保存してください");
-        } finally {
-          downloadButton.disabled = false;
-          downloadButton.removeAttribute("aria-busy");
+      try {
+        const result = await saveClearCard(clearCardFile);
+        if (result === "shared") {
+          showToast("共有メニューから写真アプリへ保存できます");
+        } else if (result === "downloaded") {
+          showToast("このブラウザではクリア画像をダウンロードしました");
         }
-      }, 120);
+      } catch (error) {
+        showToast("画像を保存できませんでした。スクリーンショットで保存してください");
+      } finally {
+        downloadButton.disabled = false;
+        downloadButton.removeAttribute("aria-busy");
+      }
     });
   }
 
@@ -233,7 +255,9 @@
     });
   }
 
-  function downloadClearCard(currentRecord, turtleImage) {
+  async function prepareClearCardFile(currentRecord, turtleImage) {
+    await ensureImageLoaded(turtleImage);
+
     const canvas = document.createElement("canvas");
     canvas.width = 1200;
     canvas.height = 630;
@@ -243,22 +267,55 @@
     drawCardTurtle(context, turtleImage, 710, 135, 480);
     drawCardText(context, currentRecord);
 
-    if (canvas.toBlob) {
+    const blob = await canvasToBlob(canvas);
+    return new File([blob], "matsuyama-golden-turtle-clear.png", { type: "image/png" });
+  }
+
+  function canvasToBlob(canvas) {
+    return new Promise(function (resolve, reject) {
       canvas.toBlob(function (blob) {
-        if (!blob) {
-          triggerDownload(canvas.toDataURL("image/png"));
-          return;
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error("Canvas image generation failed"));
         }
-        const objectUrl = URL.createObjectURL(blob);
-        triggerDownload(objectUrl);
-        window.setTimeout(function () {
-          URL.revokeObjectURL(objectUrl);
-        }, 1000);
       }, "image/png");
-      return;
+    });
+  }
+
+  function canShareFile(file) {
+    if (!navigator.share || !navigator.canShare) {
+      return false;
     }
 
-    triggerDownload(canvas.toDataURL("image/png"));
+    try {
+      return navigator.canShare({ files: [file] });
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async function saveClearCard(file) {
+    if (canShareFile(file)) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: "松山城の伝説の金の亀にたどり着いた！"
+        });
+        return "shared";
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          return "cancelled";
+        }
+      }
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    triggerDownload(objectUrl);
+    window.setTimeout(function () {
+      URL.revokeObjectURL(objectUrl);
+    }, 1000);
+    return "downloaded";
   }
 
   function drawCardBackground(context, width, height) {

@@ -4,21 +4,19 @@
   const STORAGE_KEY = "matsuyama-golden-turtle-clear-v1";
   const SHARE_TEXT = [
     "松山城にかくれた伝説の「金の亀」にたどり着いた！",
-    "親子で挑戦 おうちで謎解き、クリア！",
-    "#松山城謎解き #金の亀発見"
+    "#松山城みずだこ謎"
   ].join("\n");
 
   const clearDate = document.querySelector("[data-clear-date]");
-  const clearId = document.querySelector("[data-clear-id]");
   const nativeShareButton = document.querySelector("[data-share-native]");
   const xShareLink = document.querySelector("[data-share-x]");
   const lineShareLink = document.querySelector("[data-share-line]");
   const copyShareButton = document.querySelector("[data-copy-share]");
   const downloadButton = document.querySelector("[data-download-card]");
   const toast = document.querySelector("[data-toast]");
-  const coverModal = document.querySelector("[data-cover-modal]");
-  const coverOpenButton = document.querySelector("[data-cover-open]");
-  const coverCloseButtons = document.querySelectorAll("[data-cover-close]");
+  const goldenTurtleImage = new Image();
+  goldenTurtleImage.decoding = "async";
+  goldenTurtleImage.src = "assets/matsuyama-clear/golden-turtle.png";
   let toastTimer = 0;
 
   const record = loadOrCreateRecord();
@@ -43,9 +41,10 @@
       downloadButton.disabled = true;
       downloadButton.setAttribute("aria-busy", "true");
 
-      window.setTimeout(function () {
+      window.setTimeout(async function () {
         try {
-          downloadClearCard(record);
+          await ensureImageLoaded(goldenTurtleImage);
+          downloadClearCard(record, goldenTurtleImage);
           showToast("クリア証の画像を保存しました");
         } catch (error) {
           showToast("画像を作成できませんでした。スクリーンショットで保存してください");
@@ -57,30 +56,10 @@
     });
   }
 
-  if (coverOpenButton && coverModal) {
-    coverOpenButton.addEventListener("click", openCoverModal);
-  }
-
-  coverCloseButtons.forEach(function (button) {
-    button.addEventListener("click", closeCoverModal);
-  });
-
-  if (coverModal) {
-    coverModal.addEventListener("click", function (event) {
-      if (event.target === coverModal) {
-        closeCoverModal();
-      }
-    });
-
-    coverModal.addEventListener("close", function () {
-      document.body.classList.remove("is-modal-open");
-    });
-  }
-
   function loadOrCreateRecord() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (saved && saved.date && saved.id) {
+      if (saved && saved.date) {
         return saved;
       }
     } catch (error) {
@@ -88,10 +67,8 @@
     }
 
     const now = new Date();
-    const dateKey = [now.getFullYear(), pad(now.getMonth() + 1), pad(now.getDate())].join("");
     const newRecord = {
-      date: now.toISOString(),
-      id: "MYJ-" + dateKey + "-" + createShortCode()
+      date: now.toISOString()
     };
 
     try {
@@ -115,58 +92,27 @@
       clearDate.textContent = formatted;
     }
 
-    if (clearId) {
-      clearId.textContent = currentRecord.id;
-    }
-  }
-
-  function createShortCode() {
-    const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    const values = new Uint8Array(4);
-
-    if (window.crypto && window.crypto.getRandomValues) {
-      window.crypto.getRandomValues(values);
-    } else {
-      for (let index = 0; index < values.length; index += 1) {
-        values[index] = Math.floor(Math.random() * 256);
-      }
-    }
-
-    return Array.from(values, function (value) {
-      return characters[value % characters.length];
-    }).join("");
   }
 
   function setShareLinks() {
-    const currentUrl = getShareUrl();
-
     if (xShareLink) {
       const xUrl = new URL("https://twitter.com/intent/tweet");
       xUrl.searchParams.set("text", SHARE_TEXT);
-      if (currentUrl) {
-        xUrl.searchParams.set("url", currentUrl);
-      }
       xShareLink.href = xUrl.toString();
     }
 
     if (lineShareLink) {
-      const lineMessage = currentUrl ? SHARE_TEXT + "\n" + currentUrl : SHARE_TEXT;
-      lineShareLink.href = "https://line.me/R/share?text=" + encodeURIComponent(lineMessage);
+      lineShareLink.href = "https://line.me/R/share?text=" + encodeURIComponent(SHARE_TEXT);
       lineShareLink.target = "_blank";
       lineShareLink.rel = "noopener noreferrer";
     }
   }
 
   async function shareFromDevice() {
-    const currentUrl = getShareUrl();
     const shareData = {
       title: "松山城の伝説の金の亀にたどり着いた！",
       text: SHARE_TEXT
     };
-
-    if (currentUrl) {
-      shareData.url = currentUrl;
-    }
 
     if (navigator.share) {
       try {
@@ -183,19 +129,8 @@
     showToast(didCopy ? "共有用の文章をコピーしました" : "共有機能を開けませんでした");
   }
 
-  function getShareUrl() {
-    if (!/^https?:$/.test(window.location.protocol)) {
-      return "";
-    }
-
-    const url = new URL(window.location.href);
-    url.hash = "";
-    return url.toString();
-  }
-
   function buildCopyText() {
-    const currentUrl = getShareUrl();
-    return currentUrl ? SHARE_TEXT + "\n" + currentUrl : SHARE_TEXT;
+    return SHARE_TEXT;
   }
 
   async function copyText(text) {
@@ -287,40 +222,25 @@
     });
   }
 
-  function openCoverModal() {
-    if (!coverModal) {
-      return;
+  function ensureImageLoaded(image) {
+    if (image.complete && image.naturalWidth > 0) {
+      return Promise.resolve();
     }
 
-    document.body.classList.add("is-modal-open");
-    if (typeof coverModal.showModal === "function") {
-      coverModal.showModal();
-    } else {
-      coverModal.setAttribute("open", "");
-    }
+    return new Promise(function (resolve, reject) {
+      image.addEventListener("load", resolve, { once: true });
+      image.addEventListener("error", reject, { once: true });
+    });
   }
 
-  function closeCoverModal() {
-    if (!coverModal) {
-      return;
-    }
-
-    if (typeof coverModal.close === "function" && coverModal.open) {
-      coverModal.close();
-    } else {
-      coverModal.removeAttribute("open");
-      document.body.classList.remove("is-modal-open");
-    }
-  }
-
-  function downloadClearCard(currentRecord) {
+  function downloadClearCard(currentRecord, turtleImage) {
     const canvas = document.createElement("canvas");
     canvas.width = 1200;
     canvas.height = 630;
     const context = canvas.getContext("2d");
 
     drawCardBackground(context, canvas.width, canvas.height);
-    drawCardTurtle(context, 930, 300, 1.38);
+    drawCardTurtle(context, turtleImage, 710, 135, 480);
     drawCardText(context, currentRecord);
 
     if (canvas.toBlob) {
@@ -400,72 +320,13 @@
     context.stroke();
   }
 
-  function drawCardTurtle(context, x, y, scale) {
+  function drawCardTurtle(context, image, x, y, width) {
+    const height = width * image.naturalHeight / image.naturalWidth;
     context.save();
-    context.translate(x, y);
-    context.scale(scale, scale);
     context.shadowColor = "rgba(244,209,111,.45)";
     context.shadowBlur = 30;
-
-    const gold = context.createLinearGradient(-120, -90, 120, 100);
-    gold.addColorStop(0, "#fff1a1");
-    gold.addColorStop(.45, "#efc14f");
-    gold.addColorStop(1, "#a96712");
-    context.fillStyle = gold;
-
-    context.beginPath();
-    context.ellipse(0, 0, 100, 78, 0, 0, Math.PI * 2);
-    context.fill();
-
-    context.beginPath();
-    context.ellipse(123, -1, 32, 27, 0, 0, Math.PI * 2);
-    context.fill();
-
-    drawLimb(context, -62, -54, -108, -100, -73, -20);
-    drawLimb(context, 55, -55, 102, -103, 68, -19);
-    drawLimb(context, -62, 54, -106, 105, -69, 18);
-    drawLimb(context, 57, 54, 108, 100, 69, 19);
-
-    context.beginPath();
-    context.moveTo(-97, -14);
-    context.lineTo(-137, 0);
-    context.lineTo(-97, 15);
-    context.closePath();
-    context.fill();
-
-    context.shadowBlur = 0;
-    context.strokeStyle = "#fff1a1";
-    context.lineWidth = 2.2;
-    context.beginPath();
-    context.moveTo(0, -66);
-    context.lineTo(-44, 0);
-    context.lineTo(0, 66);
-    context.lineTo(44, 0);
-    context.closePath();
-    context.stroke();
-    context.beginPath();
-    context.moveTo(-88, 0);
-    context.lineTo(-44, 0);
-    context.lineTo(0, -66);
-    context.lineTo(44, 0);
-    context.lineTo(88, 0);
-    context.moveTo(0, 66);
-    context.lineTo(44, 0);
-    context.stroke();
-
-    context.fillStyle = "#03152b";
-    context.beginPath();
-    context.arc(132, -8, 4, 0, Math.PI * 2);
-    context.fill();
+    context.drawImage(image, x, y, width, height);
     context.restore();
-  }
-
-  function drawLimb(context, x1, y1, x2, y2, x3, y3) {
-    context.beginPath();
-    context.moveTo(x1, y1);
-    context.quadraticCurveTo(x2, y2, x3, y3);
-    context.quadraticCurveTo(x1 + (x3 - x1) * .25, y1 + (y3 - y1) * .3, x1, y1);
-    context.fill();
   }
 
   function drawCardText(context, currentRecord) {
@@ -509,7 +370,7 @@
 
     context.fillStyle = "#071f3b";
     context.font = "700 17px Georgia, serif";
-    context.fillText(formatted + "  /  " + currentRecord.id, 72, 557);
+    context.fillText(formatted, 72, 557);
 
     context.fillStyle = "#f4d16f";
     context.font = "italic 700 35px Georgia, serif";
@@ -525,7 +386,4 @@
     link.remove();
   }
 
-  function pad(value) {
-    return String(value).padStart(2, "0");
-  }
 })();

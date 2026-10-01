@@ -45,35 +45,7 @@
           <div class="turtle-emblem reveal-item" aria-hidden="true">
             <span class="turtle-emblem__orbit turtle-emblem__orbit--outer"></span>
             <span class="turtle-emblem__orbit turtle-emblem__orbit--inner"></span>
-            <svg class="turtle-emblem__turtle" viewBox="0 0 320 230" role="img">
-              <defs>
-                <linearGradient id="turtle-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#fff4ad"/>
-                  <stop offset=".34" stop-color="#efc14f"/>
-                  <stop offset=".72" stop-color="#b87512"/>
-                  <stop offset="1" stop-color="#ffe588"/>
-                </linearGradient>
-                <filter id="turtle-glow" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="7" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-              <g fill="url(#turtle-gold)" filter="url(#turtle-glow)">
-                <path d="M81 101c0-47 34-78 82-78 49 0 85 31 85 78 0 48-35 82-84 82-48 0-83-35-83-82Z"/>
-                <path d="M244 85c12-18 39-19 53-2 12 15 6 40-12 47-18 8-38-3-42-20-2-9-1-18 1-25Z"/>
-                <path d="m84 90-42-22 11 41-25 22 50 1Z"/>
-                <path d="M111 165c-3 25-21 43-43 50 4-27 14-49 31-65Z"/>
-                <path d="M201 165c4 25 23 41 46 47-5-27-16-48-34-63Z"/>
-                <path d="M112 42C98 20 78 9 55 9c8 26 23 45 45 56Z"/>
-                <path d="M210 43c14-22 34-33 57-34-7 26-22 46-44 57Z"/>
-              </g>
-              <g fill="none" stroke="#fff0a2" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke-width="3" d="M163 35c-23 15-37 37-37 66 0 30 14 54 38 70 23-16 38-40 38-70 0-28-15-51-39-66Z"/>
-                <path stroke-width="2.5" d="m126 101 38-28 38 28-38 29-38-29Zm38-28V35m0 95v41m-38-70H83m119 0h43" opacity=".9"/>
-                <path stroke-width="2" d="M108 62c14 7 24 10 56 11 33 0 44-4 57-11M103 143c18-8 33-13 61-13 29 0 44 5 62 14" opacity=".7"/>
-              </g>
-              <circle cx="280" cy="94" r="3.5" fill="#071f3b"/>
-            </svg>
+            <img class="turtle-emblem__turtle" src="assets/matsuyama-clear/golden-turtle.png" alt="" width="1448" height="1086">
             <span class="turtle-emblem__spark turtle-emblem__spark--one">✦</span>
             <span class="turtle-emblem__spark turtle-emblem__spark--two">✦</span>
             <span class="turtle-emblem__spark turtle-emblem__spark--three">✧</span>
@@ -83,13 +55,13 @@
             <p class="hero__clear">CLEAR!</p>
             <h1 id="clear-title">
               <span>松山城の伝説の</span>
-              <strong><em>金</em>の亀に<br class="mobile-break">たどり着いた！</strong>
+              <strong><em>金<img class="hero__kin-brush" src="assets/matsuyama-clear/vermilion-brush.png" alt="" width="1200" height="400"></em>の亀に<br class="mobile-break">たどり着いた！</strong>
             </h1>
           </div>
 
-          <p class="hero__lead reveal-item">すべての謎を解き明かし、長く眠っていた伝説を見つけ出しました。</p>
+          <p class="hero__lead reveal-item">すべての謎を解き明かし、長く眠っていた伝説の金の亀を見つけ出しました。</p>
           <a class="scroll-cue reveal-item" href="#clear-story">
-            <span>仙人からの言葉</span>
+            <span>SCROLL</span>
             <i aria-hidden="true"></i>
           </a>
         </div>
@@ -105,18 +77,17 @@
           <div class="story__portrait reveal-on-scroll">
             <span class="story__halo" aria-hidden="true"></span>
             <img src="assets/matsuyama-clear/sennin.png" alt="杖を持った仙人" width="1000" height="750">
-            <p><span>案内人</span> 松山城の仙人</p>
           </div>
 
           <div class="story__message reveal-on-scroll">
             <div class="section-kicker"><span>MESSAGE</span> 仙人からの祝福</div>
-            <h2 id="story-title">「よう、たどり着いたのう。」</h2>
+            <h2 id="story-title">「ふぉふぉふぉ、<br>おみごとじゃ！<br><span class="story-title__last">よう、たどりついたのう。</span>」</h2>
             <blockquote>
               <p>知恵をつなぎ、最後まで<br>あきらめなかったその心。</p>
               <p>それこそが、金の亀が認めた<br><strong>ほんとうの宝</strong>じゃ。</p>
             </blockquote>
             <p class="story__closing">今日の冒険を、どうか忘れずにな。<br>見事であった！</p>
-            <span class="story__seal" aria-label="天晴れ">天晴</span>
+            <img class="story__seal" src="assets/matsuyama-clear/appare-seal.png" alt="天晴" width="600" height="600">
           </div>
         </div>
       </section>
@@ -125,7 +96,6 @@
         <div class="certificate__heading reveal-on-scroll">
           <div class="section-kicker section-kicker--center"><span>MEMORIAL</span> 冒険の証</div>
           <h2 id="certificate-title">金の亀 発見証</h2>
-          <p>この日のひらめきを、ひとつの記念に。</p>
         </div>
 
         <article class="certificate-card reveal-on-scroll">
@@ -133,19 +103,17 @@
           <span class="certificate-card__corner certificate-card__corner--tr" aria-hidden="true"></span>
           <span class="certificate-card__corner certificate-card__corner--bl" aria-hidden="true"></span>
           <span class="certificate-card__corner certificate-card__corner--br" aria-hidden="true"></span>
-          <div class="certificate-card__mark" aria-hidden="true">亀</div>
+          <div class="certificate-card__mark" aria-hidden="true">
+            <img src="assets/matsuyama-clear/golden-turtle.png" alt="" width="1448" height="1086">
+          </div>
           <p class="certificate-card__en">CERTIFICATE OF DISCOVERY</p>
-          <p class="certificate-card__small">松山城にかくれた伝説を解き明かし</p>
+          <p class="certificate-card__small">松山城に隠れた伝説を解き明かした！</p>
           <h3><span>金の亀</span><span>探索達成</span></h3>
           <div class="certificate-card__rule" aria-hidden="true"><span>◆</span></div>
           <dl>
             <div>
               <dt>達成日</dt>
               <dd data-clear-date>----</dd>
-            </div>
-            <div>
-              <dt>発見証番号</dt>
-              <dd data-clear-id>MYJ---------</dd>
             </div>
           </dl>
           <p class="certificate-card__note">親子で挑戦　おうちで謎解き<br>『松山城にかくれた金の亀をさがせ！』</p>
@@ -156,12 +124,8 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg>
             クリア証を画像保存
           </button>
-          <button class="button button--paper" type="button" data-cover-open>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 1 4 16.5v-11Zm0 0v11A2.5 2.5 0 0 1 6.5 14H20"/></svg>
-            冒険の表紙を見る
-          </button>
         </div>
-        <p class="certificate__privacy">発見証番号と達成日は、この端末の中だけに保存されます。</p>
+        <p class="certificate__privacy">達成日は、この端末の中だけに保存されます。</p>
       </section>
 
       <section class="share" id="clear-share" aria-labelledby="share-title">
@@ -174,30 +138,28 @@
           </div>
 
           <div class="share-panel reveal-on-scroll">
-            <div class="share-panel__preview">
-              <p class="share-panel__label">POST PREVIEW</p>
-              <p data-share-preview>松山城にかくれた伝説の「金の亀」にたどり着いた！<br>親子で挑戦 おうちで謎解き、クリア！<br><span>#松山城謎解き #金の亀発見</span></p>
-            </div>
+            <button class="share-panel__preview" type="button" data-copy-share aria-label="投稿文をクリップボードにコピー">
+              <span class="share-panel__label">FOR COPY</span>
+              <span class="share-panel__copy-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+              </span>
+              <span class="share-panel__text" data-share-preview>松山城にかくれた伝説の「金の亀」にたどり着いた！<br><em>#松山城みずだこ謎</em></span>
+            </button>
 
             <div class="share-panel__buttons">
               <button class="share-button share-button--native" type="button" data-share-native>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"/></svg>
-                <span><small>スマホならこれがおすすめ</small>この端末で共有</span>
+                <span>シェアする</span>
               </button>
               <a class="share-button share-button--x" href="#" data-share-x target="_blank" rel="noopener noreferrer">
                 <span class="share-button__x" aria-hidden="true">𝕏</span>
-                <span><small>投稿文をセットして開く</small>X でクリアを報告</span>
+                <span>Xでクリア報告</span>
               </a>
               <a class="share-button share-button--line" href="#" data-share-line>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10.3c0-4-4-7.3-9-7.3s-9 3.3-9 7.3c0 3.6 3.2 6.6 7.5 7.2.3.1.7.2.8.5.1.3.1.8 0 1.1l-.2 1.3c0 .4-.3 1.5 1.3.8 1.6-.7 8.6-5 8.6-9.3Z"/></svg>
-                <span><small>LINEアプリの送信先を選ぶ</small>LINE で知らせる</span>
+                <span>LINEで友達にシェア</span>
               </a>
-              <button class="share-button share-button--copy" type="button" data-copy-share>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
-                <span><small>好きなアプリに貼り付け</small>投稿文をコピー</span>
-              </button>
             </div>
-            <p class="share-panel__hint">※ 投稿前に文章を自由に編集できます。</p>
           </div>
         </div>
         <p class="share__toast" data-toast role="status" aria-live="polite" hidden></p>
@@ -205,7 +167,10 @@
 
       <section class="epilogue" aria-label="クリアページの結び">
         <p class="epilogue__symbol" aria-hidden="true">✦</p>
-        <p>ひらめきは、次の冒険への鍵になる。</p>
+        <p>あそんでくれてありがとう！</p>
+        <a class="epilogue__x" href="https://x.com/tako_yanen?s=11" target="_blank" rel="noopener noreferrer" aria-label="制作者のXを見る">
+          <span aria-hidden="true">𝕏</span>
+        </a>
         <a href="#top">伝説のはじまりへ戻る <span aria-hidden="true">↑</span></a>
       </section>
     </main>
@@ -215,18 +180,5 @@
       <p>松山城にかくれた金の亀をさがせ！</p>
     </footer>
 
-    <dialog class="cover-modal" data-cover-modal aria-labelledby="cover-modal-title">
-      <div class="cover-modal__bar">
-        <div>
-          <p>THE BEGINNING OF THE QUEST</p>
-          <h2 id="cover-modal-title">冒険のはじまり</h2>
-        </div>
-        <button type="button" data-cover-close aria-label="表紙を閉じる">×</button>
-      </div>
-      <div class="cover-modal__body">
-        <img src="assets/matsuyama-clear/quest-cover.jpg" alt="親子で挑戦 おうちで謎解き 松山城にかくれた金の亀をさがせ！の表紙" width="1200" height="1696">
-      </div>
-      <button class="cover-modal__close" type="button" data-cover-close>クリアページへ戻る</button>
-    </dialog>
   </body>
 </html>

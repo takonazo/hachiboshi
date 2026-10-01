@@ -40,10 +40,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body.is-modal-open {
-  overflow: hidden;
-}
-
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -304,7 +300,8 @@ svg {
 .turtle-emblem__turtle {
   position: relative;
   z-index: 2;
-  width: 76%;
+  width: 94%;
+  height: auto;
   overflow: visible;
   animation: turtle-float 4.8s ease-in-out infinite;
   filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .32));
@@ -383,6 +380,7 @@ svg {
 .hero h1 em {
   position: relative;
   display: inline-grid;
+  isolation: isolate;
   color: var(--gold-300);
   font-size: 1.27em;
   font-style: normal;
@@ -390,16 +388,17 @@ svg {
   place-items: center;
 }
 
-.hero h1 em::after {
+.hero__kin-brush {
   position: absolute;
-  right: -.05em;
-  bottom: -.35em;
-  left: -.1em;
-  height: .13em;
-  border-radius: 999px;
-  background: var(--vermilion);
-  content: "";
-  rotate: -3deg;
+  z-index: -1;
+  right: -.14em;
+  bottom: -.47em;
+  width: 1.34em;
+  max-width: none;
+  height: .46em;
+  object-fit: fill;
+  pointer-events: none;
+  rotate: -2deg;
 }
 
 .mobile-break {
@@ -589,8 +588,12 @@ svg {
 
 .story__portrait {
   position: relative;
+  display: grid;
+  width: 100%;
   min-width: 0;
+  aspect-ratio: 4 / 3;
   align-self: end;
+  place-items: center;
 }
 
 .story__portrait::before {
@@ -607,28 +610,9 @@ svg {
   position: relative;
   z-index: 2;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
   filter: drop-shadow(0 28px 25px rgba(7, 31, 59, .15));
-}
-
-.story__portrait > p {
-  position: absolute;
-  z-index: 3;
-  right: 0;
-  bottom: -6px;
-  margin: 0;
-  padding: 7px 16px;
-  border: 1px solid var(--gold-500);
-  color: var(--navy-900);
-  background: var(--paper);
-  font-family: var(--serif);
-  font-size: 12px;
-  letter-spacing: .14em;
-}
-
-.story__portrait > p span {
-  margin-right: 8px;
-  color: var(--vermilion);
-  font-size: 9px;
 }
 
 .story__halo {
@@ -688,10 +672,15 @@ svg {
   margin: 0 0 30px;
   color: var(--navy-900);
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 45px);
+  font-size: clamp(26px, 2.6vw, 34px);
   font-weight: 600;
   letter-spacing: .05em;
   line-height: 1.45;
+}
+
+.story-title__last {
+  font-size: .84em;
+  white-space: nowrap;
 }
 
 .story__message blockquote {
@@ -725,20 +714,12 @@ svg {
 .story__seal {
   position: absolute;
   right: 35px;
-  bottom: 30px;
-  display: grid;
-  width: 53px;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 2px solid var(--vermilion);
-  color: var(--vermilion);
-  font-family: var(--serif);
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -.1em;
-  line-height: 1;
-  opacity: .74;
+  bottom: 24px;
+  width: 78px;
+  height: auto;
+  opacity: .84;
   rotate: -7deg;
+  mix-blend-mode: multiply;
 }
 
 .certificate {
@@ -790,14 +771,6 @@ svg {
   font-weight: 600;
   letter-spacing: .09em;
   line-height: 1.35;
-}
-
-.certificate__heading > p {
-  margin: 14px 0 0;
-  color: rgba(255, 255, 255, .56);
-  font-family: var(--serif);
-  font-size: 14px;
-  letter-spacing: .13em;
 }
 
 .certificate-card {
@@ -858,17 +831,19 @@ svg {
   position: relative;
   z-index: 1;
   display: grid;
-  width: 84px;
+  width: 116px;
   margin: 0 auto 18px;
   aspect-ratio: 1;
   place-items: center;
   border: 1px solid var(--gold-500);
   border-radius: 50%;
-  color: var(--gold-700);
-  font-family: var(--serif);
-  font-size: 37px;
-  font-weight: 600;
   box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px rgba(215, 155, 32, .45);
+}
+
+.certificate-card__mark img {
+  width: 112%;
+  height: auto;
+  filter: drop-shadow(0 7px 7px rgba(156, 96, 18, .2));
 }
 
 .certificate-card__en,
@@ -940,7 +915,7 @@ svg {
 }
 
 .certificate-card dl div {
-  min-width: 48%;
+  min-width: 220px;
   padding: 3px 22px;
 }
 
@@ -974,10 +949,10 @@ svg {
   position: relative;
   z-index: 2;
   display: grid;
-  width: min(100%, 800px);
+  width: min(100%, 400px);
   margin: 35px auto 0;
   gap: 12px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .button {
@@ -1030,17 +1005,6 @@ svg {
   color: var(--navy-950);
   background: var(--gold-300);
   box-shadow: 0 13px 28px rgba(0, 0, 0, .2);
-}
-
-.button--paper {
-  border: 1px solid rgba(244, 209, 111, .43);
-  color: var(--gold-300);
-  background: rgba(255, 255, 255, .035);
-}
-
-.button--paper:hover {
-  color: var(--navy-950);
-  background: var(--paper);
 }
 
 .certificate__privacy {
@@ -1157,9 +1121,16 @@ svg {
 
 .share-panel__preview {
   position: relative;
+  display: block;
+  width: 100%;
   padding: 25px 27px;
   border: 1px solid rgba(255, 255, 255, .1);
+  color: inherit;
   background: rgba(255, 255, 255, .045);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: border-color .3s ease, background .3s ease, transform .3s var(--ease-out);
 }
 
 .share-panel__preview::before {
@@ -1173,29 +1144,59 @@ svg {
 }
 
 .share-panel__label {
+  display: block;
   margin: 0 0 11px;
   color: var(--gold-300);
   font: 8px/1.4 Georgia, serif;
   letter-spacing: .28em;
 }
 
-.share-panel__preview > p:last-child {
-  margin: 0;
+.share-panel__copy-icon {
+  position: absolute;
+  top: 21px;
+  right: 22px;
+  display: grid;
+  width: 32px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(244, 209, 111, .28);
+  color: var(--gold-300);
+}
+
+.share-panel__copy-icon svg {
+  width: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.share-panel__text {
+  display: block;
+  padding-right: 34px;
   color: rgba(255, 255, 255, .82);
   font-size: 12px;
   line-height: 1.9;
   overflow-wrap: anywhere;
 }
 
-.share-panel__preview > p:last-child span {
+.share-panel__text em {
   color: var(--gold-300);
+  font-style: normal;
+}
+
+.share-panel__preview:hover {
+  border-color: rgba(244, 209, 111, .48);
+  background: rgba(255, 255, 255, .075);
+  transform: translateY(-2px);
 }
 
 .share-panel__buttons {
   display: grid;
   margin-top: 16px;
   gap: 10px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .share-button {
@@ -1257,15 +1258,6 @@ svg {
   line-height: 1.45;
 }
 
-.share-button small {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: .05em;
-  opacity: .62;
-}
-
 .share-button__x {
   color: inherit;
   font-size: 24px;
@@ -1289,19 +1281,6 @@ svg {
 .share-button--line svg {
   fill: currentColor;
   stroke: none;
-}
-
-.share-button--copy {
-  border-color: rgba(255, 255, 255, .18);
-  background: rgba(255, 255, 255, .065);
-}
-
-.share-panel__hint {
-  margin: 13px 0 0;
-  color: rgba(255, 255, 255, .4);
-  font-size: 9px;
-  letter-spacing: .08em;
-  text-align: right;
 }
 
 .share__toast {
@@ -1342,7 +1321,7 @@ svg {
   letter-spacing: .12em;
 }
 
-.epilogue a {
+.epilogue > a:not(.epilogue__x) {
   display: inline-flex;
   margin-top: 31px;
   align-items: center;
@@ -1357,9 +1336,31 @@ svg {
   transition: gap .3s var(--ease-out), color .3s ease;
 }
 
-.epilogue a:hover {
+.epilogue > a:not(.epilogue__x):hover {
   gap: 34px;
   color: var(--vermilion);
+}
+
+.epilogue__x {
+  display: grid;
+  width: 50px;
+  margin: 28px auto 0;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--navy-950);
+  font-size: 20px;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(7, 31, 59, .16);
+  transition: color .3s ease, background .3s ease, transform .3s var(--ease-out);
+}
+
+.epilogue__x:hover {
+  color: var(--navy-950);
+  background: var(--gold-300);
+  transform: translateY(-3px) rotate(-4deg);
 }
 
 .clear-footer {
@@ -1376,93 +1377,6 @@ svg {
 
 .clear-footer p {
   margin: 0;
-}
-
-.cover-modal {
-  width: min(92vw, 720px);
-  max-height: 92vh;
-  margin: auto;
-  padding: 0;
-  border: 1px solid var(--gold-500);
-  color: var(--ink);
-  background: var(--paper);
-  box-shadow: 0 34px 120px rgba(0, 0, 0, .58);
-}
-
-.cover-modal::backdrop {
-  background: rgba(3, 21, 43, .86);
-  backdrop-filter: blur(8px);
-}
-
-.cover-modal[open] {
-  animation: modal-in .45s var(--ease-out);
-}
-
-.cover-modal__bar {
-  position: sticky;
-  z-index: 2;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 22px;
-  color: white;
-  background: var(--navy-950);
-}
-
-.cover-modal__bar p {
-  margin: 0 0 2px;
-  color: var(--gold-300);
-  font: 7px/1.4 Georgia, serif;
-  letter-spacing: .3em;
-}
-
-.cover-modal__bar h2 {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: .12em;
-}
-
-.cover-modal__bar button {
-  display: grid;
-  width: 40px;
-  border: 1px solid rgba(255, 255, 255, .25);
-  aspect-ratio: 1;
-  place-items: center;
-  color: white;
-  background: transparent;
-  cursor: pointer;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.cover-modal__body {
-  max-height: calc(92vh - 150px);
-  overflow: auto;
-  padding: 20px;
-  background: #d9c99f;
-}
-
-.cover-modal__body img {
-  width: min(100%, 480px);
-  margin: 0 auto;
-  box-shadow: 0 17px 42px rgba(7, 31, 59, .32);
-}
-
-.cover-modal__close {
-  display: block;
-  width: min(100% - 40px, 480px);
-  margin: 16px auto 20px;
-  padding: 12px;
-  border: 1px solid var(--navy-900);
-  color: var(--navy-900);
-  background: transparent;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
 }
 
 .reveal-on-scroll {
@@ -1509,11 +1423,6 @@ svg {
 @keyframes toast-in {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes modal-in {
-  from { opacity: 0; transform: translateY(24px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (max-width: 850px) {
@@ -1598,8 +1507,8 @@ svg {
   }
 
   .hero h1 strong {
-    font-size: clamp(32px, 9.6vw, 44px);
-    letter-spacing: .03em;
+    font-size: clamp(31px, 9.1vw, 40px);
+    letter-spacing: .015em;
   }
 
   .mobile-break {
@@ -1625,18 +1534,12 @@ svg {
     width: 100%;
   }
 
-  .story__portrait > p {
-    max-width: 100%;
-    font-size: 10px;
-    white-space: nowrap;
-  }
-
   .story__message {
     padding: 41px 22px 51px;
   }
 
   .story__message h2 {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .story__message blockquote {
@@ -1646,8 +1549,8 @@ svg {
 
   .story__seal {
     right: 20px;
-    bottom: 20px;
-    width: 46px;
+    bottom: 16px;
+    width: 64px;
   }
 
   .certificate {
@@ -1674,8 +1577,7 @@ svg {
   .certificate-card__corner--br { right: 18px; bottom: 18px; }
 
   .certificate-card__mark {
-    width: 68px;
-    font-size: 29px;
+    width: 88px;
   }
 
   .certificate-card__en {
@@ -1760,9 +1662,6 @@ svg {
     gap: 4px;
   }
 
-  .cover-modal__body {
-    padding: 12px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
